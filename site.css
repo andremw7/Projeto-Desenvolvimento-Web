@@ -1,0 +1,88 @@
+/* Botões da Grid Layout */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.grid-layout button {
+    background-color: #ff8c00; /* Alterado para laranja */
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.grid-layout button:hover {
+    background-color: #e67e22; /* Alterado para um tom mais escuro de laranja */
+}
+
+@media (max-width: 768px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.flex-gallery {
+    display: flex;
+    gap: 100px; /* Espaçamento entre as imagens */
+    justify-content: center; /* Centraliza as imagens horizontalmente */
+    align-items: center; /* Alinha as imagens verticalmente */
+}
+
+.flex-gallery figure {
+    margin: 0; /* Remove margens padrão */
+    text-align: center; /* Centraliza o texto abaixo das imagens */
+}
+
+.flex-gallery img {
+    max-width: 100%; /* Garante que as imagens não ultrapassem o tamanho do contêiner */
+    border-radius: 5px; /* Adiciona bordas arredondadas às imagens */
+}
+
+@media (max-width: 768px) {
+
+    .flex-gallery {
+        flex-direction: column; /* Alinha as imagens em coluna */
+        gap: 20px; /* Espaçamento entre as imagens */
+    }
+}
+
+
+/* Two-Column Layout */
+main {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.content {
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+aside {
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        margin-top: 20px;
+    }
+}

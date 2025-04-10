@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADIMAX - O Melhor para o Seu Pet</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="login.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <header>
@@ -22,38 +23,17 @@
     </header>
     <main>
         <div class="content">
-            <article>
-                <h2>Bem-vindo ao ADIMAX</h2>
-                <p>O lugar onde seu pet encontra tudo o que precisa! Oferecemos serviços de banho e tosa, produtos de alta qualidade e muito carinho para o seu amigo de quatro patas.</p>
-            </article>
-
-            <section class="flex-gallery">
-                <figure>
-                    <img src="fotos/formula.png" alt="Ração Premium para Cães">
-                </figure>
-                <figure>
-                    <img src="fotos/origins.png" alt="Brinquedos para Gatos">
-                </figure>
-                <figure>
-                    <img src="fotos/magnus.png" alt="Serviços de Banho e Tosa">
-                </figure>
-            </section>
-
-            <section class="grid-layout">
-                <button>Roupinhas para Cães</button>
-                <button>Arranhadores para Gatos</button>
-                <button>Produtos de Higiene</button>
-                <button>Brinquedos Interativos</button>
-            </section>
+            <h2>Login</h2>
+            <form action="/login" method="POST" class="login-form">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
+                
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                
+                <button type="submit">Entrar</button>
+            </form>
         </div>
-        <aside>
-            <h3>Ofertas Especiais</h3>
-            <ul>
-               <li><a href="#">Desconto de 20% em Rações</a></li>
-               <li><a href="#">Compre 1, Leve 2 em Brinquedos</a></li>
-               <li><a href="#">Primeiro Banho Grátis!</a></li>
-            </ul>
-        </aside>
     </main>
     <footer>
         <section>
