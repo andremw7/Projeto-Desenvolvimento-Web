@@ -1,3 +1,6 @@
+<?php
+session_start(); // Certifique-se de que a sessão é iniciada aqui
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,16 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <img src="fotos/adimax.jpeg" alt="Logo ADIMAX" class="logo" width="50px" height="50px">
-            <ul>
-                <li><a href="site.html">Início</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php 
+    // Debugging: Uncomment the following lines to check session variables
+    // echo '<pre>';
+    print_r($_SESSION);
+    // echo '</pre>';
+    include 'header.php'; 
+    ?>
     <main>
         <div class="content">
             <article>
@@ -55,34 +55,6 @@
             </ul>
         </aside>
     </main>
-    <footer>
-        <section>
-            <h4>Sobre Nós</h4>
-            <p>No ADIMAX, cuidamos do seu pet como se fosse nosso. Venha nos visitar e descubra tudo o que temos para oferecer!</p>
-        </section>
-        <section>
-            <h4>Links Rápidos</h4>
-            <ul>
-                <li><a href="site.html">Início</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="login.html">Login</a></li>
-                
-            </ul>
-        </section>
-        <section>
-            <h4>Siga-nos</h4>
-            <div class="social-icons">
-                <a href="#" aria-label="Facebook">
-                    <img src="fotos/facebook.png" alt="Facebook" width="24" height="24">
-                </a>
-                <a href="#" aria-label="Twitter">
-                    <img src="fotos/X.png" alt="X" width="24" height="24">
-                </a>
-                <a href="#" aria-label="Instagram">
-                    <img src="fotos/instagram.png" alt="Instagram" width="24" height="24">
-                </a>
-            </div>
-        </section>
-    </footer>
+    <?php include 'footer.php'; ?>
 </body>
 </html>
