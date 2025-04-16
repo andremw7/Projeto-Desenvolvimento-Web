@@ -1,118 +1,148 @@
 
-Projeto: Loja Online — ADIMAX PET SHOP 🐾
+==============================
+Project Report — ADIMAX PET SHOP 🐾
+==============================
 
-Identificação
-- Nome: André Marcelino Watanabe Número USP: 14558311
-- Nome: Renato Spessotto; Número USP:14605824
+Group Identification:
+- André Marcelino Watanabe — USP Number: 14558311
+- Renato Spessotto — USP Number: 14605824
+
 ---
 
+Requirements:
 
-==============================
-Project Description
-==============================
+The ADIMAX PET SHOP project implements a real online store system using HTML5, CSS3, and PHP.
+The project has evolved beyond mockups and now offers real features:
 
-This project simulates the interface of an online pet shop called ADIMAX PET SHOP.
-The current milestone focuses on building static mockups using HTML5 and CSS3.
+- Display pet products for customer browsing.
+- Login system for customers and administrators with PHP and database validation.
+- Registration form for new users.
+- Cart management: add, update, and remove products.
+- Modular structure: header, footer, login, and product pages.
+- Dynamic session management with PHP.
+- Planned Admin Panel for future product management.
 
-Functionalities to implement:
+---
 
--> Homepage with description, images, and offers (site.html).
--> Login screen for users and administrators (login.html).
--> Products catalog page displaying product images and highlights (produtos.html).
--> Future: Admin panel for product management.
+Project Description:
 
+This project simulates and implements the core interface and logic of an online pet shop.
+Built with HTML5, CSS3, PHP, and server-side logic, it covers authentication, product navigation, and shopping cart features.
 
+Functionalities implemented:
+-> Homepage with services, products, and special offers (site.html).
+-> Login screen with PHP validation (login.html → login_pagina.php).
+-> Products catalog page (produtos.html + produtos.php) showing items and prices.
+-> User registration system (register/register.php).
+-> Cart management (add/update/remove items) via PHP scripts (carrinho/, update_carte.php, remove_item.php).
+-> Logout feature (sair.php) to destroy sessions.
+-> Modular design with reusable header and footer.
 
-==============================
-Navigation Diagram (SPA)
-==============================
+Planned functionalities:
+-> Admin Panel for managing products, users, and orders.
+
+---
+
+Navigation Diagram (SPA):
 
 +----------------+
 |     Home       | (site.html)
 +----------------+
        |
-       |--> Login (login.html)
+       |--> Login (login.html -> login_pagina.php)
        |
-       |--> Products (produtos.html)
+       |--> Products (produtos.html -> produtos.php)
+       |
+       |--> Register (register/register.php)
+       |
+       |--> Cart (carrinho/, update_carte.php, remove_item.php)
+       |
+       |--> Logout (sair.php)
        |
        |--> Admin Panel (Planned)
-                |
-                |--> Add Product (Planned)
-                |--> Edit Product (Planned)
-                |--> Delete Product (Planned)
 
-Description:
-- Users start on the Home page.
-- From the Home page, they can access the Login page to log in as a customer or administrator.
-- Users can navigate to the Products page to browse available items.
-- Administrators (when logged in) will have access to the Admin Panel.
-- The Admin Panel will provide options to Add, Edit, and Delete products.
+This navigation map reflects the functional routes of the current application
+and prepares for future admin-exclusive management areas.
 
-This diagram reflects the current structure of the ADIMAX PET SHOP project
-and outlines the intended future flow once administrative functions are implemented.
+---
 
 Planned Data to Store on the Server:
 
--> Customer and admin login data (username, password).
--> Product information (name, price, description, images).
--> Registered user data and their orders (planned).
+-> Customer and admin login credentials.
+-> Product data: name, price, image, description.
+-> Registered customer profiles and their shopping cart contents.
+-> Purchase orders and sales history (Planned).
 
-==============================
-Comments About the Code
-==============================
+---
 
--> The project is fully structured in HTML5 and CSS3.
--> Semantic tags were used for clear document organization.
--> The layout applies Flexbox and Grid to ensure responsiveness.
--> Separation of concerns was maintained by splitting CSS across multiple files (style.css, login.css, site.css).
--> Mockups provide a faithful visual representation of the user flow.
+Comments About the Code:
 
-==============================
-Test Plan
-==============================
+-> Structured in HTML5 for markup, CSS3 for styling, and PHP for server-side logic.
+-> Use of semantic HTML tags to enhance document clarity.
+-> Header and footer components are modular and reused across pages.
+-> PHP handles sessions for login/logout, cart state, and data flow.
+-> CSS layouts apply Flexbox and Grid for responsive design.
+-> Simple and intuitive navigation flow.
 
--> Manual testing was performed to validate visual rendering and navigation flow.
--> The application was tested in modern browsers like Google Chrome and Mozilla Firefox.
--> Page responsiveness was checked using browser DevTools.
+---
+
+Test Plan:
+
+- Manual testing to verify page loading and link navigation.
+- Login and logout functions tested with valid and invalid credentials.
+- Registration process tested with various data entries.
+- Product cart tested for add, update, and remove actions.
+- Compatibility verified with Chrome and Firefox.
+- Responsive behavior checked on mobile and desktop using browser DevTools.
 
 Future Plan:
+-> Use Postman to test backend HTTP requests.
+-> Implement Selenium for automated user flow testing.
 
--> Backend API testing using Postman.
--> UI navigation testing with Selenium automation scripts.
+---
 
-==============================
-Test Results
-==============================
+Test Results:
 
--> All pages load successfully without visual glitches.
--> Navigation links work correctly and point to the expected screens.
--> The interface adapts to various screen sizes including mobile.
+- Login and registration forms validated successfully.
+- Products display properly on the catalog page.
+- Cart functionalities (add/update/remove) perform as expected.
+- The layout adapts responsively to various screen sizes.
+- Navigation links work correctly across the system.
 
-==============================
-Build Procedures
-==============================
+---
 
-1. Clone the GitHub repository:
+Build Procedures:
+
+1. Install a local server (XAMPP, WAMP, Laragon) with PHP and MySQL.
+2. Clone the GitHub repository:
    git clone https://github.com/seu-usuario/seu-repositorio.git
 
-2. Navigate to the project folder:
-   cd seu-repositorio
+3. Move the project folder to your server's directory (e.g., `htdocs` for XAMPP).
 
-3. Open site.html in a web browser:
-   start site.html
+4. Start Apache and MySQL services.
 
-==============================
-Problems
-==============================
+5. Access the application through your browser:
+   http://localhost/SEU_PROJETO/site.html
 
--> The system does not yet handle user authentication or real product storage.
--> The admin management panel is under development.
--> Full SPA navigation behavior with JavaScript is still planned.
+6. Create the necessary database and tables (if not yet done) as defined in the `/database` folder.
 
-==============================
-Comments
-==============================
+---
 
-This milestone established the graphical interface mockups for the online store ADIMAX PET SHOP using HTML5 and CSS3.
-The focus was on creating clear, responsive layouts and ensuring navigability.
-In the next phase, the project will evolve to integrate a real backend system, improve user interaction, and adopt dynamic SPA behavior with JavaScript.
+Problems:
+
+-> Initial SPA navigation was pure HTML, now mixed with PHP links — full JavaScript SPA planned.
+-> Admin Panel not yet implemented.
+-> Integration with a real database is still in progress.
+
+---
+
+Comments:
+
+The ADIMAX PET SHOP project has successfully evolved from mockups to a functional PHP-based system,
+including login, registration, cart manipulation, and dynamic navigation.
+
+Future steps will focus on creating a full Admin Panel, improving the JavaScript-based SPA experience,
+and refining the user interface and backend interactions.
+
+🧡 ADIMAX PET SHOP — Taking care of your pet like family!
+
