@@ -1,62 +1,118 @@
-# Projeto: Loja Online - Esportes LTDA
 
-## Identificação
-- Integrante: André Marcelino Watanabe
-- Número USP: 14558311
+Projeto: Loja Online — ADIMAX PET SHOP 🐾
 
-## Requirements
-- O sistema deve permitir que o cliente visualize produtos da adimax disponíveis para compra.
-- Deve existir uma tela de login para clientes e administradores.
-- O administrador poderá cadastrar, editar e excluir produtos.
-- A loja será do tipo SPA (Single Page Application), com uma única página dividida por seções.
+Identificação
+- Nome: André Marcelino Watanabe Número USP: 14558311
+- Nome: Renato Spessotto; Número USP:14605824
+---
 
-## Project Description
-A aplicação "Esportes LTDA" é um mockup de loja online com interface desenvolvida em HTML5 e CSS3. Ela apresenta as principais telas de navegação:
 
-### Diagrama de Navegação (SPA):
-```
-[Tela Inicial]
-   |
-   |--> [Login]
-   |--> [Produtos]
-   |--> [Painel do Administrador]
-```
+==============================
+Project Description
+==============================
 
-### Mockups Criados em HTML/CSS:
-- **Tela Inicial (site.html)**: Apresenta o título e descrição da loja, uma galeria de imagens e botões para categorias de produtos.
-- **Tela de Login (login.html)**: Contém campos para email e senha, permitindo autenticação de usuários.
-- **Seção de Produtos (produtos.html)**: Exibe uma lista de produtos organizados em grades, com imagens e categorias.
-- **Painel do Administrador**: Ainda não implementado, mas será adicionado em futuras iterações.
+This project simulates the interface of an online pet shop called ADIMAX PET SHOP.
+The current milestone focuses on building static mockups using HTML5 and CSS3.
 
-Outras telas podem ser esboçadas manualmente ou criadas em ferramentas como Figma, se necessário.
+Functionalities to implement:
 
-## Comments About Code
-O projeto foi estruturado usando apenas HTML e CSS, com foco na organização semântica e layout limpo. As seções estão separadas visualmente com elementos `<section>` e estilizadas para boa legibilidade e usabilidade.
+-> Homepage with description, images, and offers (site.html).
+-> Login screen for users and administrators (login.html).
+-> Products catalog page displaying product images and highlights (produtos.html).
+-> Future: Admin panel for product management.
 
-### Detalhes Adicionais:
-- **site.html**: Inclui uma galeria flexível e uma seção de ofertas especiais.
-- **produtos.html**: Apresenta produtos em grades flexíveis e em duas colunas.
-- **login.html**: Formulário de login funcional com validação básica.
 
-## Test Plan
-- Testes manuais na navegação entre seções da página.
-- Verificação visual de responsividade e aparência.
-- Teste do formulário de login para garantir que os campos obrigatórios estão funcionando.
 
-## Test Results
-- Mockups renderizados corretamente em navegadores modernos.
-- Interface responsiva em tamanhos de tela padrão.
-- Navegação entre páginas funcionando corretamente.
+==============================
+Navigation Diagram (SPA)
+==============================
 
-## Build Procedures
-1. Clonar o repositório do GitHub.
-2. Abrir o arquivo `site.html` em qualquer navegador web.
-3. Navegar pelas páginas usando os links no cabeçalho e rodapé.
++----------------+
+|     Home       | (site.html)
++----------------+
+       |
+       |--> Login (login.html)
+       |
+       |--> Products (produtos.html)
+       |
+       |--> Admin Panel (Planned)
+                |
+                |--> Add Product (Planned)
+                |--> Edit Product (Planned)
+                |--> Delete Product (Planned)
 
-## Problems
-- Ainda não há funcionalidades interativas implementadas (como cadastro real de produtos).
-- Algumas telas extras estão pendentes de desenvolvimento, como o Painel do Administrador.
+Description:
+- Users start on the Home page.
+- From the Home page, they can access the Login page to log in as a customer or administrator.
+- Users can navigate to the Products page to browse available items.
+- Administrators (when logged in) will have access to the Admin Panel.
+- The Admin Panel will provide options to Add, Edit, and Delete products.
 
-## Comments
-O projeto está em desenvolvimento inicial e será expandido com funcionalidades interativas nas próximas etapas.
+This diagram reflects the current structure of the ADIMAX PET SHOP project
+and outlines the intended future flow once administrative functions are implemented.
 
+Planned Data to Store on the Server:
+
+-> Customer and admin login data (username, password).
+-> Product information (name, price, description, images).
+-> Registered user data and their orders (planned).
+
+==============================
+Comments About the Code
+==============================
+
+-> The project is fully structured in HTML5 and CSS3.
+-> Semantic tags were used for clear document organization.
+-> The layout applies Flexbox and Grid to ensure responsiveness.
+-> Separation of concerns was maintained by splitting CSS across multiple files (style.css, login.css, site.css).
+-> Mockups provide a faithful visual representation of the user flow.
+
+==============================
+Test Plan
+==============================
+
+-> Manual testing was performed to validate visual rendering and navigation flow.
+-> The application was tested in modern browsers like Google Chrome and Mozilla Firefox.
+-> Page responsiveness was checked using browser DevTools.
+
+Future Plan:
+
+-> Backend API testing using Postman.
+-> UI navigation testing with Selenium automation scripts.
+
+==============================
+Test Results
+==============================
+
+-> All pages load successfully without visual glitches.
+-> Navigation links work correctly and point to the expected screens.
+-> The interface adapts to various screen sizes including mobile.
+
+==============================
+Build Procedures
+==============================
+
+1. Clone the GitHub repository:
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+
+2. Navigate to the project folder:
+   cd seu-repositorio
+
+3. Open site.html in a web browser:
+   start site.html
+
+==============================
+Problems
+==============================
+
+-> The system does not yet handle user authentication or real product storage.
+-> The admin management panel is under development.
+-> Full SPA navigation behavior with JavaScript is still planned.
+
+==============================
+Comments
+==============================
+
+This milestone established the graphical interface mockups for the online store ADIMAX PET SHOP using HTML5 and CSS3.
+The focus was on creating clear, responsive layouts and ensuring navigability.
+In the next phase, the project will evolve to integrate a real backend system, improve user interaction, and adopt dynamic SPA behavior with JavaScript.
