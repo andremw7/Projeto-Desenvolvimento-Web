@@ -16,14 +16,14 @@
     font-weight: 600;
 }
 .login-form input {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
 }
-.login-button, .register-button {
+.login-form button {
     width: 100%;
     padding: 10px;
     background-color: #ff8c00;
@@ -34,8 +34,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 10px; /* Ensures consistent spacing */
 }
-.login-button:hover, .register-button:hover {
+.login-form button:hover {
     background-color: #e07b00;
 }

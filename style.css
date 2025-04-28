@@ -1,8 +1,5 @@
-/* Global Styles */
-html, body {
-    height: 100%;
-}
 
+/* Global Styles */
 body {
     font-family: 'Poppins', sans-serif; /* Alterado para uma fonte mais estilosa */
     font-size: 18px; /* Aumentado o tamanho da fonte */
@@ -10,8 +7,6 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
-    display: flex;
-    flex-direction: column;
 }
 
 a {
@@ -121,13 +116,8 @@ footer ul li a:hover {
     transition: color 0.3s ease;
 }
 
-social-icons a:hover {
+.social-icons a:hover {
     color: #ff8c00; 
-}
-
-/* Ensure footer sticks to the bottom */
-main {
-    flex: 1;
 }
 
 /* Responsive Footer */
@@ -137,3 +127,4 @@ main {
         align-items: flex-start;
     }
 }
+
