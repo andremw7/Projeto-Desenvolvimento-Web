@@ -6,37 +6,12 @@
     <title>ADIMAX - O Melhor para o Seu Pet</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="site.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-    <style>
-        /* Deixar dois botões por linha */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .grid-layout a {
-            text-decoration: none;
-        }
-
-        /* Só arrumando o tamanho e o espaçamento dos botões, sem mudar a cor */
-        .grid-layout button {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
     <header>
         <nav>
-            <img src="fotos/adimax.jpeg" alt="Logo ADIMAX" class="logo" width="50px" height="50px">
+            <img src="fotos/adimax.jpeg" alt="Logo ADIMAX" class="logo" width="50" height="50">
             <ul>
                 <li><a href="site.html">Início</a></li>
                 <li><a href="produtos.html">Produtos</a></li>
@@ -46,40 +21,58 @@
     </header>
 
     <main>
-        <div class="content">
-            <article>
-                <h2>Bem-vindo ao ADIMAX</h2>
-                <p>O lugar onde seu pet encontra tudo o que precisa! Oferecemos serviços de banho e tosa, produtos de alta qualidade e muito carinho para o seu amigo de quatro patas.</p>
-            </article>
+        <section class="hero text-center">
+            <div class="container">
+                <div class="row mx-auto" style="max-width: 600px;">
+                    <div class=" text-start">
+                        <h1 class="display-5 fw-bold">O melhor para o seu pet</h1>
+                        <p class="lead">Alimentos de qualidade e muito carinho para quem faz parte da sua família.</p>
+                        <a href="#produtos" class="btn btn-primary btn-lg me-2">Conhecer Produtos</a>
+                        <a href="#sobre" class="btn btn-outline-light btn-lg">Saiba Mais</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="fotos/pet-banner.png" alt="Cachorro feliz" class="img-fluid rounded">
+                </div>
+            </div>
+        </section>
 
-            <section class="flex-gallery">
-                <figure>
-                    <img src="fotos/formula.png" alt="Ração Premium para Cães">
-                </figure>
-                <figure>
-                    <img src="fotos/origins.png" alt="Brinquedos para Gatos">
-                </figure>
-                <figure>
-                    <img src="fotos/magnus.png" alt="Serviços de Banho e Tosa">
-                </figure>
-            </section>
-
-            <section class="grid-layout">
-                <a href="roupas.html"><button>Roupinhas para Cães</button></a>
-                <a href="arranhador_gato.html"><button>Arranhadores para Gatos</button></a>
-                <a href="higiene.html"><button>Produtos de Higiene</button></a>
-                <a href="brinquedos.html"><button>Brinquedos Interativos</button></a>
-            </section>
-        </div>
-
-        <aside>
-            <h3>Ofertas Especiais</h3>
-            <ul>
-               <li><a href="#">Desconto de 20% em Rações</a></li>
-               <li><a href="#">Compre 1, Leve 2 em Brinquedos</a></li>
-               <li><a href="#">Primeiro Banho Grátis!</a></li>
-            </ul>
-        </aside>
+        <section class="brands py-5">
+            <div class="container text-center">
+                <h2 class="fw-bold mb-4">Nossas Marcas</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="produtos_formula.html">
+                            <img src="fotos/formula.png" alt="Fórmula" class="img-fluid rounded mb-3">
+                        </a>
+                        <h5 class="fw-bold">
+                            <a href="produtos_formula.html" class="text-decoration-none text-dark">Fórmula Natural</a>
+                        </h5>
+                        <p>Rações premium desenvolvidas com ingredientes de alta qualidade para o bem-estar do seu pet.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="produtos_origins.html">
+                            <img src="fotos/origins.png" alt="Origins" class="img-fluid rounded mb-3">
+                        </a>
+                        <h5 class="fw-bold">
+                            <a href="produtos_origins.html" class="text-decoration-none text-dark">Origins</a>
+                        </h5>
+                        <p>Alimentos balanceados que combinam sabor e nutrição para todas as fases da vida do seu pet.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="produtos_magnus.html">
+                            <img src="fotos/magnus.png" alt="Magnus" class="img-fluid rounded mb-3">
+                        </a>
+                        <h5 class="fw-bold">
+                            <a href="produtos_magnus.html" class="text-decoration-none text-dark">Magnus</a>
+                        </h5>
+                        <p>A marca que une qualidade e preço acessível, garantindo a felicidade do seu pet.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
     </main>
 
     <footer>
@@ -98,17 +91,13 @@
         <section>
             <h4>Siga-nos</h4>
             <div class="social-icons">
-                <a href="#" aria-label="Facebook">
-                    <img src="fotos/facebook.png" alt="Facebook" width="24" height="24">
-                </a>
-                <a href="#" aria-label="Twitter">
-                    <img src="fotos/X.png" alt="Twitter" width="24" height="24">
-                </a>
-                <a href="#" aria-label="Instagram">
-                    <img src="fotos/instagram.png" alt="Instagram" width="24" height="24">
-                </a>
+                <a href="#"><img src="fotos/facebook.png" alt="Facebook" width="24" height="24"></a>
+                <a href="#"><img src="fotos/X.png" alt="X" width="24" height="24"></a>
+                <a href="#"><img src="fotos/instagram.png" alt="Instagram" width="24" height="24"></a>
             </div>
         </section>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -5,50 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADIMAX - O Melhor para o Seu Pet</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="login.css">
-
+    <link rel="stylesheet" href="produtos.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        .content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .product-grid {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        .product-grid figure {
-            flex: 1;
-            text-align: center;
-        }
-        .product-grid img {
-            width: 100%;
-            max-width: 250px;
-            height: auto;
-            border-radius: 8px;
-        }
-        .product-grid-two-columns {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .product-grid-two-columns figure {
-            text-align: center;
-        }
-        .product-grid-two-columns img {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
-            border-radius: 8px;
-        }
-        .two-column-products h2 {
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -62,45 +20,124 @@
         </nav>
     </header>
 
-
-
     <main>
         <div class="content">
             <section class="products">
                 <h2>Classes de Produtos</h2>
                 <div class="product-grid">
                     <figure>
+                      <a href="produtos_formula.html">
                         <img src="fotos/formula.png" alt="Ração Premium para Cães">
+                      </a>
                     </figure>
                     <figure>
+                      <a href="produtos_origins.html">
                         <img src="fotos/origins.png" alt="Brinquedos para Gatos">
+                      </a>
                     </figure>
                     <figure>
+                      <a href="produtos_magnus.html">
                         <img src="fotos/magnus.png" alt="Serviços de Banho e Tosa">
+                      </a>
                     </figure>
-                </div>
+                  </div>
+                  
             </section>
         </div>
-        <div class="two-column-products">
-            <h2>Destaques</h2>
-            <div class="product-grid-two-columns">
-                <figure>
-                    <img src="fotos/produto1.png" alt="Produto 1">
-                </figure>
-                <figure>
-                    <img src="fotos/produto2.png" alt="Produto 2">
-                </figure>
-                <figure>
-                    <img src="fotos/produto3.png" alt="Produto 3">
-                </figure>
-                <figure>
-                    <img src="fotos/produto4.png" alt="Produto 4">
-                </figure>
+        <div class="product-grid-two-columns">
+
+           <!-- Magnus -->
+           <div class="product-card">
+                <img src="/fotos/magnus_filhote.png" alt="Ração Magnus Filhotes">
+                <h3>Ração Magnus Filhotes</h3>
+                <p>Ração premium para cães filhotes, com leite e frango.</p>
+                <button>Comprar</button>
             </div>
+            
+            <div class="product-card">
+                <img src="/fotos/sache_magnus.png" alt="Sachê Magnus Cães">
+                <h3>Sachê Magnus Cães</h3>
+                <p>Alimento úmido completo e balanceado para cães adultos.</p>
+                <button>Comprar</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="/fotos/magnus_control_tartaro.png" alt="Magnus Control Tártaro">
+                <h3>Magnus Control Tártaro</h3>
+                <p>Ajuda na redução do tártaro e melhora da saúde bucal dos cães.</p>
+                <button>Comprar</button>
+            </div>
+            
+            <div class="product-card">
+                <img src="/fotos/magnos_gatos_adultos.png" alt="Ração Magnus Gatos Adultos">
+                <h3>Ração Magnus Gatos Adultos</h3>
+                <p>Nutrição equilibrada com controle de bolas de pelo.</p>
+                <button>Comprar</button>
+            </div>
+          
+            <!-- Fórmula Natural -->
+            <div class="product-card">
+                <img src="/fotos/formula_natural_filhotes.png" alt="Fórmula Natural Filhotes">
+                <h3>Fórmula Natural Filhotes</h3>
+                <p>Alimento natural completo para cães filhotes.</p>
+                <button>Comprar</button>
+            </div>
+        
+            <div class="product-card">
+                <img src="/fotos/formula_natural_light.png" alt="Fórmula Natural Light">
+                <h3>Fórmula Natural Light</h3>
+                <p>Ideal para cães com sobrepeso ou tendência à obesidade.</p>
+                <button>Comprar</button>
+            </div>
+        
+            <div class="product-card">
+                <img src="/fotos/formula_natural_senior.png" alt="Fórmula Natural Sênior">
+                <h3>Fórmula Natural Sênior</h3>
+                <p>Desenvolvida para cães a partir de 7 anos.</p>
+                <button>Comprar</button>
+            </div>
+        
+            <div class="product-card">
+                <img src="/fotos/formula_natural_gatos.png" alt="Fórmula Natural Gatos Adultos">
+                <h3>Fórmula Natural Gatos Adultos</h3>
+                <p>Ração natural e completa com antioxidantes e ômega 3.</p>
+                <button>Comprar</button>
+            </div>
+            
+          
+            <!-- Origens -->
+            <div class="product-card">
+                <img src="/fotos/origins_caes_filhotes.png" alt="Origens Cães Filhotes">
+                <h3>Origens Cães Filhotes</h3>
+                <p>Nutrição rica para crescimento saudável de filhotes.</p>
+                <button>Comprar</button>
+            </div>
+        
+            <div class="product-card">
+                <img src="/fotos/origiens_gatos_adultos.png" alt="Origens Gatos Adultos">
+                <h3>Origens Gatos Adultos</h3>
+                <p>Ração com ingredientes selecionados para gatos exigentes.</p>
+                <button>Comprar</button>
+            </div>
+        
+            <div class="product-card">
+                <img src="/fotos/origens_Caes_adultos_carne.png" alt="Origens Cães Adultos Carne">
+                <h3>Origens Cães Adultos Carne</h3>
+                <p>Alimento completo com proteínas de origem animal.</p>
+                <button>Comprar</button>
+            </div>
+        
+            <div class="product-card">
+                <img src="/fotos/origens_snack_premium.png" alt="Snack Origens Premium">
+                <h3>Snack Origens Premium</h3>
+                <p>Petisco nutritivo com sabor irresistível para cães.</p>
+                <button>Comprar</button>
+            </div>
+          
         </div>
+          
+
     </main>
-
-
 
     <footer>
         <section>
@@ -113,7 +150,6 @@
                 <li><a href="site.html">Início</a></li>
                 <li><a href="produtos.html">Produtos</a></li>
                 <li><a href="login.html">Login</a></li>
-                
             </ul>
         </section>
         <section>
@@ -131,5 +167,9 @@
             </div>
         </section>
     </footer>
+
+    <script>
+        
+    </script>
 </body>
 </html>
