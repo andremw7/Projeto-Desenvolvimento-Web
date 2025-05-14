@@ -1,0 +1,66 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #222;
+    color: white;
+  }
+  
+  .nav {
+    position: relative;
+  }
+  
+  .user-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 50px; /* Ajusta a posição para não interferir nos outros itens */
+    right: 0;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    min-width: 150px;
+    z-index: 1000; /* Garante que o dropdown fique acima de outros elementos */
+  }
+  
+  .dropdown a,
+  .dropdown button {
+    background: none;
+    border: none;
+    padding: 8px;
+    text-align: left;
+    cursor: pointer;
+    width: calc(100% - 16px); /* Ajusta a largura para considerar o padding */
+    color: white; /* Alterado para branco */
+    box-sizing: border-box; /* Garante que o padding seja incluído no tamanho total */
+  }
+  
+  .dropdown a:hover,
+  .dropdown button:hover {
+    background-color: black; /* Alterado para um cinza escuro */
+    width: 100%; /* Garante que o hover não ultrapasse os limites */
+  }
+
+
+nav ul {
+  display: flex;
+  gap: 15px;
+  align-items: center; /* Garante que os itens fiquem centralizados verticalmente */
+  margin: 0;
+  padding: 0;
+}
+
+.user-menu {
+  position: relative; /* Garante que o dropdown seja posicionado em relação ao botão */
+}

@@ -1,0 +1,34 @@
+.dropdown-vertical {
+  position: fixed; /* Altera para fixed para não ser limitado pelo header */
+  top: 60px; /* Ajuste para começar logo abaixo do header */
+  left: 10px; /* Ajuste para alinhar com o botão */
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  width: 200px; /* Define uma largura fixa para os itens */
+}
+
+.dropdown-vertical a,
+.dropdown-vertical button {
+  margin: 5px 0;
+  padding: 10px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px; /* Ajusta o tamanho da fonte */
+}
+
+.dropdown-vertical a:hover,
+.dropdown-vertical button:hover {
+  background-color: #f0f0f0;
+}
+
+.user-menu {
+  position: relative; /* Garante que o botão do menu seja posicionado corretamente */
+}

@@ -1,0 +1,19 @@
+.produto-detalhes {
+  text-align: center;
+  padding: 20px;
+}
+
+.produto-detalhes img {
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.produto-detalhes h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.produto-detalhes p {
+  font-size: 18px;
+  margin: 5px 0;
+}
