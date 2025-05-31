@@ -44,7 +44,11 @@ function Header() {
                 {isOpen && (
                   <div className="dropdown dropdown-vertical">
                     <CustomLink to="/carrinho">🛒 Carrinho</CustomLink>
-                    <CustomLink to="/perfil">👤 Perfil</CustomLink>
+                    {isAdmin ? (
+                      <CustomLink to="/admin/perfil">👤 Admin</CustomLink>
+                    ) : (
+                      <CustomLink to="/perfil/dados">👤 Perfil</CustomLink>
+                    )}
                     <button onClick={handleLogout}>🚪 Logout</button>
                   </div>
                 )}

@@ -13,7 +13,7 @@ function Produtos() {
   const [faixaEtariaSelecionada, setFaixaEtariaSelecionada] = useState('');
   const [ordenacao, setOrdenacao] = useState('');
   const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
-  const { isAuthenticated } = useAuth(); // Usar o estado de autenticação do AuthContext
+  const { isAuthenticated, userId, isAdmin } = useAuth(); // Usar o estado de autenticação e ID do usuário do AuthContext
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,13 +39,21 @@ function Produtos() {
       return 0;
     });
 
+  const handleEditProduct = (produtoId) => {
+    navigate(`/admin/edit-produto/${produtoId}`); // Redirecionar para a página de edição do produto
+  };
+
   const handleAddToCart = (produtoId) => {
     if (!isAuthenticated) {
       setModalVisible(true); // Exibe o modal para usuários não logados
       return;
     }
 
-    fetch(`http://localhost:3000/addCarrinho/${produtoId}`, { method: 'POST' })
+    fetch(`http://localhost:3000/addCarrinho/${produtoId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId }), // Enviar o ID do usuário
+    })
       .then(response => {
         if (response.ok) {
           setModalVisible(true); // Exibe o modal
@@ -161,7 +169,11 @@ function Produtos() {
               <img src={`/assets${produto.imagem}`} alt={produto.nome} />
               <h3>{produto.nome}</h3>
               <h4><strong>Preço:</strong> R$ {produto.preco.toFixed(2)}</h4>
-              <button onClick={() => handleAddToCart(produto.id)}>Comprar</button>
+              {isAdmin ? (
+                <button onClick={() => handleEditProduct(produto.id)}>Editar Produto</button>
+              ) : (
+                <button onClick={() => handleAddToCart(produto.id)}>Comprar</button>
+              )}
               <button onClick={() => handleViewDetails(produto.id)}>Ver Detalhes</button>
             </div>
           ))}

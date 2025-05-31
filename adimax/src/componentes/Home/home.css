@@ -15,6 +15,52 @@ body {
     text-align: center;
 }
 
+.hero-container-compact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px; /* Reduz o espaçamento entre os elementos internos */
+  padding: 20px; /* Ajusta o padding para reduzir o afastamento */
+}
+
+.hero-content-compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Reduz o espaçamento entre o texto e a imagem */
+  padding: 20px; /* Ajusta o padding para reduzir o afastamento */
+}
+
+.text-content {
+  flex: 1;
+  text-align: center; /* Centraliza o texto, título e links */
+}
+
+.text-content h1 {
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  margin-bottom: 20px;
+}
+
+.text-content a {
+  display: inline-block;
+  margin: 10px;
+}
+
+.image-content {
+  flex: 1;
+  text-align: center; /* Centraliza a imagem */
+}
+
+.image-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 .hero .container {
     display: flex;
     flex-wrap: wrap;

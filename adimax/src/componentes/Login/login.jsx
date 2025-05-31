@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './login.css';
-import { useNavigate } from 'react-router-dom'; // Importar useNavigate
-import { useAuth } from '../../context/AuthContext'; // Importar o contexto
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { login, isAuthenticated, loading } = useAuth(); // Adicionar `loading` para verificar o carregamento do estado
+  const { login, isAuthenticated, loading } = useAuth();
 
   useEffect(() => {
-    if (!loading && isAuthenticated) { // Garantir que o estado de autenticação foi carregado
-      setError('Você já está logado'); // Definir mensagem de erro
+    if (!loading && isAuthenticated) {
+      setError('Você já está logado');
       setTimeout(() => {
-        alert(error); // Mostrar mensagem como pop-up
-        navigate('/'); // Redirecionar após exibir o pop-up
+        alert(error);
+        navigate('/');
       }, 500);
     }
   }, [isAuthenticated, loading, navigate, error]);
@@ -26,24 +26,23 @@ function Login() {
     
     try {
       const response = await axios.post('http://localhost:3000/login', 
-        JSON.stringify({ username, password }),
+        { username, password }, // Corrigir o formato do corpo da requisição
         {
-          headers: {'Content-Type': 'application/json'}
+          headers: { 'Content-Type': 'application/json' }
         }
       );
       if (response.status === 200) {
-        const { userId, admin } = response.data; // Obter o userId e admin do servidor
+        const { userId, admin } = response.data;
         login(userId, admin); // Atualizar o estado de autenticação com userId e admin
-        const previousPage = document.referrer.startsWith(window.location.origin)
-          ? document.referrer.replace(window.location.origin, '')
-          : '/';
-        navigate(previousPage);
+        navigate('/');
       }
     } catch (error) {
       if (!error.response) {
         setError('Erro de conexão com o servidor');
       } else if (error.response.status === 401) {
         setError('Usuário ou senha inválidos');
+      } else {
+        setError('Erro desconhecido');
       }
     }
   };
@@ -53,11 +52,11 @@ function Login() {
       <section>
         <div className="content-login">
           <h2>Login</h2>
-          {error && <p className="error-message">{error}</p>} {/* Exibir mensagem de erro claramente */}
-          {loading ? ( // Mostrar um indicador de carregamento enquanto o estado é carregado
+          {error && <p className="error-message">{error}</p>}
+          {loading ? (
             <p>Carregando...</p>
           ) : (
-            <form className="login-form">
+            <form className="login-form" onSubmit={handleLogin}>
               <label htmlFor="username">Usuário:</label>
               <input
                 type="text"
@@ -78,18 +77,11 @@ function Login() {
                 required
               />
 
-              <button
-                type="submit"
-                id="submit"
-                name="submit"
-                value="Enviar"
-                className="login-button"
-                onClick={(e) => handleLogin(e)}
-              >Login</button>
+              <button type="submit" className="login-button">Login</button>
               <button
                 type="button"
                 className="register-button"
-                onClick={() => (window.location.href = 'register')}
+                onClick={() => navigate('/register')}
               >
                 Cadastrar-se
               </button>

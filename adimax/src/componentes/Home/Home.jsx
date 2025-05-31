@@ -13,16 +13,14 @@ function Home() {
       <div>
         <main>
           <section className="hero text-center">
-            <div className="container">
-              <div className="row mx-auto" style={{ maxWidth: '600px' }}>
-                <div className="text-start">
-                  <h1 className="display-5 fw-bold">O melhor para o seu pet</h1>
-                  <p className="lead" style={{ color: 'white' }}>Alimentos de qualidade e muito carinho para quem faz parte da sua família.</p>
-                  <a href="#produtos" className="btn btn-primary btn-lg me-2">Conhecer Produtos</a>
-                  <a href="#sobre" className="btn btn-outline-light btn-lg" style={{ backgroundColor: 'black', color: 'white', border: '2px solid black' }}>Saiba Mais</a>
-                </div>
+            <div className="hero-content-compact">
+              <div className="text-content">
+                <h1 className="display-5 fw-bold">O melhor para o seu pet</h1>
+                <p className="lead" style={{ color: 'white' }}>Alimentos de qualidade e muito carinho para quem faz parte da sua família.</p>
+                <a href="#produtos" className="btn btn-primary btn-lg me-2">Conhecer Produtos</a>
+                <a href="#sobre" className="btn btn-outline-light btn-lg" style={{ backgroundColor: 'black', color: 'white', border: '2px solid black' }}>Saiba Mais</a>
               </div>
-              <div className="col-lg-6">
+              <div className="image-content">
                 <img src={petBanner} alt="Cachorro feliz" className="img-fluid rounded" />
               </div>
             </div>

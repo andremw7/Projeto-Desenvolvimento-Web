@@ -127,3 +127,80 @@ button:active {
 .remove-button:active {
     background-color: #cc0000;
 }
+
+.cart-container {
+    display: flex;
+    gap: 20px;
+}
+
+.cart-body {
+    flex: 3;
+}
+
+.cart-sidebar {
+    flex: 1; /* Mantém o tamanho horizontal */
+    max-height: 150px; /* Reduz o tamanho vertical */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinhar os itens à esquerda */
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: auto; /* Adiciona scroll caso o conteúdo exceda o tamanho */
+}
+
+.total-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left; /* Alinhar o texto à esquerda */
+}
+
+.total-price span:first-child {
+    display: block;
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    text-align: left; /* Garantir alinhamento à esquerda */
+}
+
+.finalizar-button {
+    background-color: #ff8c00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: left; /* Alinhar o botão à esquerda */
+}
+
+.finalizar-button:hover {
+    background-color: #e67e00;
+}
+
+.finalizar-button:active {
+    background-color: #cc6f00;
+}
+
+.cart-container p {
+    text-align: center; /* Centraliza o texto */
+    font-size: 1.2rem; /* Ajusta o tamanho da fonte */
+    color: #666; /* Define uma cor mais suave */
+    margin-top: 20px; /* Adiciona espaçamento superior */
+}
+
+.empty-cart p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Define altura para centralização vertical */
+  text-align: center; /* Centraliza o texto horizontalmente */
+}

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Adicionado useNavigate
 import { useAuth } from '../../context/AuthContext';
 import './produto.css';
 
 function Produto() {
   const { id } = useParams();
+  const navigate = useNavigate(); // Inicializar useNavigate
   const [produto, setProduto] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [modalVisible, setModalVisible] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, userId, isAdmin } = useAuth(); // Adicionado isAdmin
+  const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
 
   useEffect(() => {
     fetch(`http://localhost:3000/produto/${id}`)
@@ -28,13 +29,21 @@ function Produto() {
       });
   }, [id]);
 
+  const handleEditProduct = () => {
+    navigate(`/admin/edit-produto/${id}`); // Redirecionar para a página de edição do produto
+  };
+
   const handleAddToCart = () => {
     if (!isAuthenticated) {
       setModalVisible(true); // Exibe o modal para usuários não logados
       return;
     }
 
-    fetch(`http://localhost:3000/addCarrinho/${id}`, { method: 'POST' })
+    fetch(`http://localhost:3000/addCarrinho/${id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId }), // Enviar o ID do usuário
+    })
       .then(response => {
         if (response.ok) {
           setModalVisible(true); // Exibe o modal
@@ -78,15 +87,31 @@ function Produto() {
         </div>
       )}
 
-      <img src={`/assets${produto.imagem}`} alt={produto.nome} />
-      <h1>{produto.nome}</h1>
-      <p><strong>Descrição:</strong> {produto.descricao}</p>
-      <p><strong>Preço:</strong> R$ {produto.preco.toFixed(2)}</p>
-      <p><strong>Marca:</strong> {produto.marca}</p>
-      <p><strong>Faixa Etária:</strong> {produto.faixaEtaria}</p>
-      <p><strong>Tipo:</strong> {produto.tipo}</p>
-      <p><strong>Estoque:</strong> {produto.estoque}</p>
-      <button onClick={handleAddToCart}>Comprar</button>
+      <div className="imagem-container">
+        <div className="main-image">
+          <img src={`/assets${produto.imagem}`} alt={produto.nome} />
+        </div>
+      </div>
+      <div className="texto-container">
+        <h1>{produto.nome}</h1>
+        <div className="price-section">
+          <span className="price">R$ {produto.preco.toFixed(2)}</span>
+        </div>
+        <p className="description">{produto.descricao}</p>
+        <div className="details">
+          <span><strong>Marca:</strong> {produto.marca}</span>
+          <span><strong>Faixa Etária:</strong> {produto.faixaEtaria}</span>
+          <span><strong>Tipo:</strong> {produto.tipo}</span>
+          <span><strong>Estoque:</strong> {produto.estoque}</span>
+        </div>
+        <div className="actions">
+          {isAdmin ? (
+            <button className="buy-button" onClick={handleEditProduct}>Editar Produto</button>
+          ) : (
+            <button className="buy-button" onClick={handleAddToCart}>Comprar Agora</button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

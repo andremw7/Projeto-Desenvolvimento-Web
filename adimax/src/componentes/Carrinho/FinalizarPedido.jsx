@@ -1,0 +1,100 @@
+// src/componentes/Checkout/finalizarPedido.jsx
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext'; // Importar o AuthContext
+import styles from './finalizarPedido.module.css';
+
+const FinalizarPedido = () => {
+  const [cart, setCart] = useState([]);
+  const { userId } = useAuth(); // Usar o ID do usuário do AuthContext
+  const navigate = useNavigate(); // Inicializar useNavigate
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/carrinho/${userId}`) // Passar o userId na URL
+      .then(response => response.json())
+      .then(data => setCart(data))
+      .catch(error => console.error('Erro ao carregar o carrinho:', error));
+  }, [userId]);
+
+  // Cálculos
+  const subtotal = cart.reduce((sum, item) => sum + (item.preco * item.quantity), 0);
+  const frete = 15.00; // Valor fixo de exemplo
+  const total = subtotal + frete;
+
+  const finalizarCompra = () => {
+    fetch('http://localhost:3000/finalizarCompra', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId }),
+    })
+      .then(response => {
+        if (response.ok) {
+          response.json().then(data => {
+            alert('Compra finalizada com sucesso!');
+            navigate(`/status-compra/${data.pedido.pedidoId}`); // Redirecionar para a página de status da compra usando pedidoId
+          });
+        } else {
+          response.json().then(error => {
+            alert(`Erro ao finalizar a compra: ${error.error || 'Erro desconhecido'}`);
+          });
+        }
+      })
+      .catch(error => alert(`Erro ao finalizar a compra: ${error.message}`));
+  };
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Resumo do Pedido</h1>
+      
+      <div className={styles.orderSummary}>
+        <div className={styles.orderItems}>
+          {cart.map(item => (
+            <div key={item.id} className={styles.orderItem}>
+              <img src={`/assets${item.imagem}`} alt={item.nome} className={styles.productImage} />
+              <div className={styles.itemInfo}>
+                <span className={styles.itemName}>{item.nome}</span>
+                <span className={styles.itemDescription}>{item.descricao}</span>
+                <span className={styles.itemQuantity}>Quantidade: {item.quantity}</span>
+              </div>
+              <span className={styles.itemPrice}>
+                R$ {(item.preco * item.quantity).toFixed(2).replace('.', ',')}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.summaryTotals}>
+          <div className={styles.summaryRow}>
+            <span>Subtotal ({cart.length} itens)</span>
+            <span>R$ {subtotal.toFixed(2).replace('.', ',')}</span>
+          </div>
+          <div className={styles.summaryRow}>
+            <span>Frete</span>
+            <span>R$ {frete.toFixed(2).replace('.', ',')}</span>
+          </div>
+          <div className={styles.summaryTotal}>
+            <span>Total</span>
+            <span>R$ {total.toFixed(2).replace('.', ',')}</span>
+          </div>
+        </div>
+
+        <div className={styles.buttonsContainer}>
+          <Link to="/produtos" className={styles.backButton}>
+            Adicionar mais produtos
+          </Link>
+          {/* <Link to="/CheckoutPage" className={styles.checkoutButton}>
+            Finalizar Compra
+          </Link> */}
+          <button 
+            className={styles.checkoutButton} 
+            onClick={finalizarCompra}
+          >
+            Finalizar Compra
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FinalizarPedido;

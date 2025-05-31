@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext'; // Importar o AuthContext
 import styles from './Carrinho.module.css'; // Importar o CSS Module
 
 const mainStyle = {
@@ -8,15 +10,16 @@ const mainStyle = {
 };
 
 function Carrinho() {
+  const { userId } = useAuth(); // Usar o ID do usuário do AuthContext
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
     // Fetch cart data from the backend
-    fetch('http://localhost:3000/carrinho')
+    fetch(`http://localhost:3000/carrinho/${userId}`)
       .then(response => response.json())
       .then(data => setCart(data))
       .catch(error => console.error('Erro ao carregar o carrinho:', error));
-  }, []);
+  }, [userId]);
 
   const updateQuantity = (productId, change, unitPrice) => {
     const updatedCart = cart.map(item => {
@@ -44,47 +47,65 @@ function Carrinho() {
     fetch('http://localhost:3000/removeItem', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId }),
+      body: JSON.stringify({ productId, userId }), // Enviar o userId junto com o productId
     });
   };
 
   return (
     <>
-      <main style={mainStyle}>
+      <main style={mainStyle} >
         {cart.length > 0 ? (
-          cart.map(item => {
-            const totalPrice = (item.preco * item.quantity).toFixed(2).replace('.', ',');
-            return (
-              <div className={styles['cart-item']} key={item.id}>
-                <figure>
-                  <img src={`/assets/${item.imagem}`} alt={item.nome} />
-                  <figcaption>
-                    <span>{item.nome}</span>
-                    <span>Preço Unitário: R$ {item.preco.toFixed(2).replace('.', ',')}</span>
-                    <span>Estoque: {item.estoque}</span>
-                    <span id={`total-price-${item.id}`}>Total: R$ {totalPrice}</span>
-                  </figcaption>
-                </figure>
-                <div className={styles['quantity-controls']}>
-                  <button onClick={() => updateQuantity(item.id, -1, item.preco)}>-</button>
-                  <input
-                    type="number"
-                    id={`quantity-${item.id}`}
-                    value={item.quantity}
-                    min="1"
-                    max={item.estoque}
-                    readOnly
-                  />
-                  <button onClick={() => updateQuantity(item.id, 1, item.preco)}>+</button>
-                </div>
-                <button className={styles['remove-button']} onClick={() => removeItem(item.id)}>
-                  Remover
-                </button>
+          <>
+            <div className={styles['cart-container']}>
+              <div className={styles['cart-body']}>
+                {cart.map(item => {
+                  const totalPrice = (item.preco * item.quantity).toFixed(2).replace('.', ',');
+                  return (
+                    <div className={styles['cart-item']} key={item.id}>
+                      <figure>
+                        <img src={`/assets/${item.imagem}`} alt={item.nome} />
+                        <figcaption>
+                          <span>{item.nome}</span>
+                          <span>Preço Unitário: R$ {item.preco.toFixed(2).replace('.', ',')}</span>
+                          <span>Estoque: {item.estoque}</span>
+                          <span id={`total-price-${item.id}`}>Total: R$ {totalPrice}</span>
+                        </figcaption>
+                      </figure>
+                      <div className={styles['quantity-controls']}>
+                        <button onClick={() => updateQuantity(item.id, -1, item.preco)}>-</button>
+                        <input
+                          type="number"
+                          id={`quantity-${item.id}`}
+                          value={item.quantity}
+                          min="1"
+                          max={item.estoque}
+                          readOnly
+                        />
+                        <button onClick={() => updateQuantity(item.id, 1, item.preco)}>+</button>
+                      </div>
+                      <button className={styles['remove-button']} onClick={() => removeItem(item.id)}>
+                        Remover
+                      </button>
+                    </div>
+                  
+                );
+                })}
               </div>
-            );
-          })
+              <div className={styles['cart-sidebar']}>
+                <div className={styles['total-price']}>
+                  <span>Total da Compra:</span>
+                  <span>R$ {cart.reduce((sum, item) => sum + (item.preco * item.quantity), 0).toFixed(2).replace('.', ',')}</span>
+                </div>
+                <Link to="/finalizarPedido" className={styles['finalizar-button']}>
+                  Finalizar Pedido
+                </Link>
+              </div>
+            </div>
+          </>
         ) : (
-          <p>Nenhum produto no carrinho.</p>
+          <div className={styles['empty-cart']}>
+            <p>Nenhum produto no carrinho.</p>
+          </div>
         )}
       </main>
     </>
