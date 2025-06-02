@@ -50,7 +50,7 @@ The ADIMAX PET SHOP project is a fully functional online store system developed 
 
 The diagram below illustrates the navigation flow of the application, including login, permissions, cart access, admin panel, and checkout:
 
-![Navigation Diagram](./diagrma_navegacao.jpeg)
+![Navigation Diagram](./diagrama_navegacao.jpeg)
 
 ---
 
