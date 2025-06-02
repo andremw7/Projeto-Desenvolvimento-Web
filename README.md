@@ -73,11 +73,19 @@ The diagram below illustrates the navigation flow of the application, including 
    ```bash
    npm install
    ```
-4. Start the development server:
+4. Start the development server for the frontend:
    ```bash
    npm run dev
    ```
-5. Access the project in your browser:
+5. Navigate to the backend folder:
+   ```bash
+   cd ../backend
+   ```
+6. Start the API server:
+   ```bash
+   npm run dev
+   ```
+7. Access the project in your browser:
    ```
    http://localhost:3000
    ```
