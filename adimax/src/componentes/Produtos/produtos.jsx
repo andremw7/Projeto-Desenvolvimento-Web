@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext'; // Importar o AuthContext
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './produtos.css';
 import formula from '../../assets/formula.png';
 import magnus from '../../assets/magnus.png';
@@ -16,6 +16,7 @@ function Produtos() {
   const [searchTerm, setSearchTerm] = useState(''); // Estado para o termo de pesquisa
   const { isAuthenticated, userId, isAdmin } = useAuth(); // Usar o estado de autenticação e ID do usuário do AuthContext
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams(); // Capturar parâmetros da URL
 
   useEffect(() => {
     fetch('http://localhost:3000/produtos')
@@ -23,6 +24,13 @@ function Produtos() {
       .then(data => setProdutos(data))
       .catch(error => console.error('Erro ao carregar os produtos:', error));
   }, []);
+
+  useEffect(() => {
+    const marca = searchParams.get('marca'); // Capturar o filtro de marca da URL
+    if (marca) {
+      setMarcaSelecionada(marca);
+    }
+  }, [searchParams]);
 
   const produtosFiltrados = produtos
     .filter(produto => {
@@ -101,18 +109,18 @@ function Produtos() {
             <h2>Classes de Produtos</h2>
             <div className="product-grid">
               <figure>
-                <a href="produtos_formula.html">
+                <a href="/produtos?marca=Fórmula Natural">
                   <img src={formula} alt="Ração Premium para Cães" />
                 </a>
               </figure>
               <figure>
-                <a href="produtos_origins.html">
+                <a href="/produtos?marca=Origens">
                   <img src={origins} alt="Brinquedos para Gatos" />
                 </a>
               </figure>
               <figure>
-                <a href="produtos_magnus.html">
-                  <img src={magnus} alt="Serviços de Banho e Tosa"/>
+                <a href="/produtos?marca=Magnus">
+                  <img src={magnus} alt="Serviços de Banho e Tosa" />
                 </a>
               </figure>
             </div>

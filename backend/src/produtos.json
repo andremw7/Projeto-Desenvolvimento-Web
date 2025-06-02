@@ -9,7 +9,7 @@
     "marca": "Magnus",
     "excluido": false,
     "imagem": "/magnus_filhote.png",
-    "estoque": 13
+    "estoque": 11
   },
   {
     "id": 2,
@@ -33,7 +33,7 @@
     "marca": "Magnus",
     "excluido": false,
     "imagem": "/magnus_control_tartaro.png",
-    "estoque": 115
+    "estoque": 107
   },
   {
     "id": 4,

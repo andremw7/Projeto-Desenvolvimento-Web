@@ -233,11 +233,19 @@ routes.post('/addCarrinho/:id', (req, res) => {
 
         const existingItem = carrinho.find(item => item.id === produtoId && item.userId === userId);
         if (existingItem) {
-            // Atualizar quantidade do produto existente
-            existingItem.quantity += 1;
+            // Atualizar quantidade do produto existente, respeitando o limite do estoque
+            if (existingItem.quantity < produto.estoque) {
+                existingItem.quantity += 1;
+            } else {
+                return res.status(400).json({ error: `Estoque insuficiente para o produto ${produto.nome}.` });
+            }
         } else {
             // Adicionar novo produto ao carrinho
-            carrinho.push({ ...produto, userId: parseInt(userId, 10), quantity: 1 });
+            if (produto.estoque > 0) {
+                carrinho.push({ ...produto, userId: parseInt(userId, 10), quantity: 1 });
+            } else {
+                return res.status(400).json({ error: `Estoque insuficiente para o produto ${produto.nome}.` });
+            }
         }
 
         try {
@@ -267,19 +275,42 @@ routes.get('/carrinho/:userId', (req, res) => {
     }
 });
 
-routes.post('/updateCart', (req, res) => {
-    const { productId, change } = req.body;
+routes.put('/updateCart', (req, res) => {
+    const { productId, change, userId } = req.body; // Adicionado userId para identificar o carrinho do usuário
     const carrinhoPath = path.join(__dirname, 'carrinho.json');
+    const produtosPath = path.join(__dirname, 'produtos.json');
+
     try {
+        // Carregar carrinho
         const carrinho = JSON.parse(fs.readFileSync(carrinhoPath, 'utf-8'));
-        const produto = carrinho.find(item => item.id === productId);
-        if (produto) {
-            produto.quantity = Math.max(1, (produto.quantity || 1) + change);
-            fs.writeFileSync(carrinhoPath, JSON.stringify(carrinho, null, 2));
-            res.status(200).json({ message: 'Quantidade atualizada com sucesso.' });
-        } else {
-            res.status(404).json({ error: 'Produto não encontrado no carrinho.' });
+        const produtoCarrinho = carrinho.find(item => item.id === productId && item.userId === userId);
+
+        if (!produtoCarrinho) {
+            return res.status(404).json({ error: 'Produto não encontrado no carrinho.' });
         }
+
+        // Carregar produtos
+        const produtos = JSON.parse(fs.readFileSync(produtosPath, 'utf-8'));
+        const produto = produtos.find(p => p.id === productId && !p.excluido);
+
+        if (!produto) {
+            return res.status(404).json({ error: 'Produto não encontrado ou excluído.' });
+        }
+
+        // Atualizar quantidade, respeitando o limite do estoque
+        const novaQuantidade = produtoCarrinho.quantity + change;
+        if (novaQuantidade > produto.estoque) {
+            return res.status(400).json({ error: `Estoque insuficiente para o produto ${produto.nome}.` });
+        }
+        if (novaQuantidade < 1) {
+            return res.status(400).json({ error: 'A quantidade mínima é 1.' });
+        }
+
+        produtoCarrinho.quantity = novaQuantidade;
+
+        // Salvar carrinho atualizado
+        fs.writeFileSync(carrinhoPath, JSON.stringify(carrinho, null, 2));
+        res.status(200).json({ message: 'Quantidade atualizada com sucesso.', produtoCarrinho });
     } catch (error) {
         res.status(500).json({ error: 'Erro ao atualizar o carrinho.' });
     }

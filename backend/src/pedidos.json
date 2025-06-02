@@ -143,5 +143,23 @@
         "preco": 5.5
       }
     ]
+  },
+  {
+    "pedidoId": 11,
+    "usuarioId": 11,
+    "dataCompra": "2025-06-02T14:22:57.185Z",
+    "totalPrice": 379.8,
+    "itens": [
+      {
+        "produtoId": 3,
+        "quantidade": 8,
+        "preco": 25
+      },
+      {
+        "produtoId": 1,
+        "quantidade": 2,
+        "preco": 89.9
+      }
+    ]
   }
 ]

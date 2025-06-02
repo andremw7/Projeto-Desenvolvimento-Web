@@ -21,27 +21,6 @@ const FinalizarPedido = () => {
   const frete = 15.00; // Valor fixo de exemplo
   const total = subtotal + frete;
 
-  const finalizarCompra = () => {
-    fetch('http://localhost:3000/finalizarCompra', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId }),
-    })
-      .then(response => {
-        if (response.ok) {
-          response.json().then(data => {
-            alert('Compra finalizada com sucesso!');
-            navigate(`/status-compra/${data.pedido.pedidoId}`); // Redirecionar para a página de status da compra usando pedidoId
-          });
-        } else {
-          response.json().then(error => {
-            alert(`Erro ao finalizar a compra: ${error.error || 'Erro desconhecido'}`);
-          });
-        }
-      })
-      .catch(error => alert(`Erro ao finalizar a compra: ${error.message}`));
-  };
-
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Resumo do Pedido</h1>
@@ -82,15 +61,9 @@ const FinalizarPedido = () => {
           <Link to="/produtos" className={styles.backButton}>
             Adicionar mais produtos
           </Link>
-          {/* <Link to="/CheckoutPage" className={styles.checkoutButton}>
+          <Link to="/CheckoutPage" className={styles.checkoutButton}>
             Finalizar Compra
-          </Link> */}
-          <button 
-            className={styles.checkoutButton} 
-            onClick={finalizarCompra}
-          >
-            Finalizar Compra
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ function Header() {
   const { isAuthenticated, isAdmin, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const searchRef = useRef(null); // <- Novo ref para a busca
+  const searchRef = useRef(null);
   const [searchDropdownOpen, setSearchDropdownOpen] = useState(false);
   const [produtos, setProdutos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,16 +23,23 @@ function Header() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target) &&
+      const clickedOutsideSearch =
         searchRef.current &&
-        !searchRef.current.contains(event.target)
-      ) {
-        setIsOpen(false);
+        !searchRef.current.contains(event.target);
+
+      const clickedOutsideUserMenu =
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target);
+
+      if (clickedOutsideSearch) {
         setSearchDropdownOpen(false);
       }
+
+      if (clickedOutsideUserMenu) {
+        setIsOpen(false);
+      }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -57,6 +64,7 @@ function Header() {
 
   const handleProductClick = (produtoId) => {
     console.log(`Tentando redirecionar para o produto com ID: ${produtoId}`);
+    setSearchDropdownOpen(false); // fecha dropdown ao clicar
     navigate(`/produto/${produtoId}`);
   };
 
@@ -85,7 +93,7 @@ function Header() {
             {searchDropdownOpen && (
               <div
                 className="search-dropdown"
-                ref={searchRef} // <- Adicionado ref
+                ref={searchRef}
                 onClick={(e) => e.stopPropagation()}
               >
                 {filteredProdutos.length > 0 ? (

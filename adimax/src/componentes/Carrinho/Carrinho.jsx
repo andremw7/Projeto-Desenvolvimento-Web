@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext'; // Importar o AuthContext
-import styles from './Carrinho.module.css'; // Importar o CSS Module
+import { useAuth } from '../../context/AuthContext';
+import styles from './Carrinho.module.css';
 
 const mainStyle = {
     padding: '20px',
@@ -10,18 +10,25 @@ const mainStyle = {
 };
 
 function Carrinho() {
-  const { userId } = useAuth(); // Usar o ID do usuário do AuthContext
+  const { userId, isAuthenticated } = useAuth(); // Adicionado isAuthenticated
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    // Fetch cart data from the backend
-    fetch(`http://localhost:3000/carrinho/${userId}`)
-      .then(response => response.json())
-      .then(data => setCart(data))
-      .catch(error => console.error('Erro ao carregar o carrinho:', error));
-  }, [userId]);
+    if (isAuthenticated && userId) { // Garantir que o usuário está autenticado antes de buscar os dados
+      fetch(`http://localhost:3000/carrinho/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+          const updatedCart = data.map(item => ({
+            ...item,
+            quantity: Math.min(item.quantity, item.estoque), // Garantir que a quantidade não ultrapasse o estoque
+          }));
+          setCart(updatedCart);
+        })
+        .catch(error => console.error('Erro ao carregar o carrinho:', error));
+    }
+  }, [userId, isAuthenticated]); // Adicionado isAuthenticated como dependência
 
-  const updateQuantity = (productId, change, unitPrice) => {
+  const updateQuantity = (productId, change) => {
     const updatedCart = cart.map(item => {
       if (item.id === productId) {
         const newQuantity = Math.min(item.estoque, Math.max(1, item.quantity + change));
@@ -31,29 +38,39 @@ function Carrinho() {
     });
     setCart(updatedCart);
 
-    // Update quantity in the backend
+    // Atualizar quantidade no backend
     fetch('http://localhost:3000/updateCart', {
-      method: 'POST',
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId, change }),
-    });
+      body: JSON.stringify({ productId, change, userId }),
+    }).then(response => {
+      if (!response.ok) {
+        response.json().then(error => {
+          alert(`Erro ao atualizar quantidade: ${error.error || 'Erro desconhecido'}`);
+        });
+      }
+    }).catch(error => console.error('Erro ao atualizar quantidade no backend:', error));
   };
 
   const removeItem = productId => {
     const updatedCart = cart.filter(item => item.id !== productId);
     setCart(updatedCart);
 
-    // Remove item from the backend
+    // Remover item no backend
     fetch('http://localhost:3000/removeItem', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId, userId }), // Enviar o userId junto com o productId
+      body: JSON.stringify({ productId, userId }),
+    }).then(response => {
+      if (!response.ok) {
+        console.error('Erro ao remover item no backend.');
+      }
     });
   };
 
   return (
     <>
-      <main style={mainStyle} >
+      <main style={mainStyle}>
         {cart.length > 0 ? (
           <>
             <div className={styles['cart-container']}>
@@ -72,7 +89,7 @@ function Carrinho() {
                         </figcaption>
                       </figure>
                       <div className={styles['quantity-controls']}>
-                        <button onClick={() => updateQuantity(item.id, -1, item.preco)}>-</button>
+                        <button onClick={() => updateQuantity(item.id, -1)}>-</button>
                         <input
                           type="number"
                           id={`quantity-${item.id}`}
@@ -81,14 +98,13 @@ function Carrinho() {
                           max={item.estoque}
                           readOnly
                         />
-                        <button onClick={() => updateQuantity(item.id, 1, item.preco)}>+</button>
+                        <button onClick={() => updateQuantity(item.id, 1)}>+</button>
                       </div>
                       <button className={styles['remove-button']} onClick={() => removeItem(item.id)}>
                         Remover
                       </button>
                     </div>
-                  
-                );
+                  );
                 })}
               </div>
               <div className={styles['cart-sidebar']}>

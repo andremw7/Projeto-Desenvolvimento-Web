@@ -1,6 +1,7 @@
 // src/componentes/Checkout/CheckoutPage.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import styles from './checkoutPage.module.css';
 
 const CheckoutPage = () => {
@@ -18,6 +19,7 @@ const CheckoutPage = () => {
   });
   const [errors, setErrors] = useState({});
   const [pixCode, setPixCode] = useState('');
+  const { userId } = useAuth();
   const navigate = useNavigate();
 
   // Gera código PIX fictício ao carregar a página
@@ -57,22 +59,43 @@ const CheckoutPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const finalizarCompra = () => {
+    fetch('http://localhost:3000/finalizarCompra', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId }),
+    })
+      .then(response => {
+        if (response.ok) {
+          response.json().then(data => {
+            alert('Compra finalizada com sucesso!');
+            navigate(`/status-compra/${data.pedido.pedidoId}`);
+          });
+        } else {
+          response.json().then(error => {
+            alert(`Erro ao finalizar a compra: ${error.error || 'Erro desconhecido'}`);
+          });
+        }
+      })
+      .catch(error => alert(`Erro ao finalizar a compra: ${error.message}`));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      navigate('/status-compra');
+      finalizarCompra(); // Chamar a função finalizarCompra
     }
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Finalizar Compra</h1>
+    <div className={styles.checkoutContainer}>
+      <h1 className={styles.checkoutTitle}>Finalizar Compra</h1>
       
       <form onSubmit={handleSubmit} className={styles.checkoutForm}>
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Endereço de Entrega</h2>
+        <div className={styles.checkoutSection}>
+          <h2 className={styles.checkoutSectionTitle}>Endereço de Entrega</h2>
           
-          <div className={styles.formGroup}>
+          <div className={styles.checkoutFormGroup}>
             <label>CEP*</label>
             <input
               type="text"
@@ -80,12 +103,12 @@ const CheckoutPage = () => {
               value={formData.cep}
               onChange={handleInputChange}
               placeholder="00000-000"
-              className={errors.cep ? styles.errorInput : ''}
+              className={errors.cep ? styles.checkoutErrorInput : ''}
             />
-            {errors.cep && <span className={styles.errorMessage}>{errors.cep}</span>}
+            {errors.cep && <span className={styles.checkoutErrorMessage}>{errors.cep}</span>}
           </div>
           
-          <div className={styles.formGroup}>
+          <div className={styles.checkoutFormGroup}>
             <label>Endereço*</label>
             <input
               type="text"
@@ -93,13 +116,13 @@ const CheckoutPage = () => {
               value={formData.endereco}
               onChange={handleInputChange}
               placeholder="Rua, número, complemento"
-              className={errors.endereco ? styles.errorInput : ''}
+              className={errors.endereco ? styles.checkoutErrorInput : ''}
             />
-            {errors.endereco && <span className={styles.errorMessage}>{errors.endereco}</span>}
+            {errors.endereco && <span className={styles.checkoutErrorMessage}>{errors.endereco}</span>}
           </div>
           
-          <div className={styles.formRow}>
-            <div className={styles.formGroup}>
+          <div className={styles.checkoutFormRow}>
+            <div className={styles.checkoutFormGroup}>
               <label>Cidade*</label>
               <input
                 type="text"
@@ -107,12 +130,12 @@ const CheckoutPage = () => {
                 value={formData.cidade}
                 onChange={handleInputChange}
                 placeholder="Sua cidade"
-                className={errors.cidade ? styles.errorInput : ''}
+                className={errors.cidade ? styles.checkoutErrorInput : ''}
               />
-              {errors.cidade && <span className={styles.errorMessage}>{errors.cidade}</span>}
+              {errors.cidade && <span className={styles.checkoutErrorMessage}>{errors.cidade}</span>}
             </div>
             
-            <div className={styles.formGroup}>
+            <div className={styles.checkoutFormGroup}>
               <label>Estado*</label>
               <input
                 type="text"
@@ -120,13 +143,13 @@ const CheckoutPage = () => {
                 value={formData.estado}
                 onChange={handleInputChange}
                 placeholder="UF"
-                className={errors.estado ? styles.errorInput : ''}
+                className={errors.estado ? styles.checkoutErrorInput : ''}
               />
-              {errors.estado && <span className={styles.errorMessage}>{errors.estado}</span>}
+              {errors.estado && <span className={styles.checkoutErrorMessage}>{errors.estado}</span>}
             </div>
           </div>
           
-          <div className={styles.formGroup}>
+          <div className={styles.checkoutFormGroup}>
             <label>Observações de entrega (opcional)</label>
             <textarea
               name="observacoes"
@@ -138,12 +161,12 @@ const CheckoutPage = () => {
           </div>
         </div>
         
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Método de Pagamento</h2>
+        <div className={styles.checkoutSection}>
+          <h2 className={styles.checkoutSectionTitle}>Método de Pagamento</h2>
           
-          <div className={styles.paymentMethods}>
+          <div className={styles.checkoutPaymentMethods}>
             <div 
-              className={`${styles.paymentOption} ${paymentMethod === 'pix' ? styles.active : ''}`}
+              className={`${styles.checkoutPaymentOption} ${paymentMethod === 'pix' ? styles.checkoutActive : ''}`}
               onClick={() => setPaymentMethod('pix')}
             >
               <input 
@@ -157,7 +180,7 @@ const CheckoutPage = () => {
             </div>
             
             <div 
-              className={`${styles.paymentOption} ${paymentMethod === 'creditCard' ? styles.active : ''}`}
+              className={`${styles.checkoutPaymentOption} ${paymentMethod === 'creditCard' ? styles.checkoutActive : ''}`}
               onClick={() => setPaymentMethod('creditCard')}
             >
               <input 
@@ -175,13 +198,13 @@ const CheckoutPage = () => {
           </div>
           
           {paymentMethod === 'pix' && (
-            <div className={styles.pixContainer}>
-              <div className={styles.pixCodeContainer}>
-                <h3>Código PIX Copia e Cola</h3>
-                <div className={styles.pixCode}>{pixCode}</div>
+            <div className={styles.checkoutPixContainer}>
+              <div className={styles.checkoutPixCodeContainer}>
+                <h3>Código PIX</h3>
+                <div className={styles.checkoutPixCode}>{pixCode}</div>
                 <button 
                   type="button" 
-                  className={styles.copyButton}
+                  className={styles.checkoutCopyButton}
                   onClick={() => {
                     navigator.clipboard.writeText(pixCode);
                     alert('Código PIX copiado!');
@@ -191,25 +214,21 @@ const CheckoutPage = () => {
                 </button>
               </div>
               
-              <div className={styles.qrCodeContainer}>
-                <h3>Ou escaneie o QR Code</h3>
-                <div className={styles.qrCodePlaceholder}>
-                  {/* Substituir por um QR code real se necessário */}
-                  <div className={styles.qrCodeFake}>
-                    <div className={styles.qrCodeLines}></div>
-                    <div className={styles.qrCodeText}>PIX</div>
+              <div className={styles.checkoutQrCodeContainer}>
+                <h3>QR Code</h3>
+                <div className={styles.checkoutQrCodePlaceholder}>
+                  <div className={styles.checkoutQrCodeFake}>
+                    <div className={styles.checkoutQrCodeLines}></div>
+                    <span className={styles.checkoutQrCodeText}>QR Code</span>
                   </div>
                 </div>
-                <p className={styles.pixInstructions}>
-                  Pagamentos via PIX são aprovados em até 30 minutos
-                </p>
               </div>
             </div>
           )}
           
           {paymentMethod === 'creditCard' && (
-            <div className={styles.creditCardForm}>
-              <div className={styles.formGroup}>
+            <div className={styles.checkoutCreditCardForm}>
+              <div className={styles.checkoutFormGroup}>
                 <label>Número do Cartão*</label>
                 <input
                   type="text"
@@ -217,12 +236,12 @@ const CheckoutPage = () => {
                   value={formData.cardNumber}
                   onChange={handleInputChange}
                   placeholder="0000 0000 0000 0000"
-                  className={errors.cardNumber ? styles.errorInput : ''}
+                  className={errors.cardNumber ? styles.checkoutErrorInput : ''}
                 />
-                {errors.cardNumber && <span className={styles.errorMessage}>{errors.cardNumber}</span>}
+                {errors.cardNumber && <span className={styles.checkoutErrorMessage}>{errors.cardNumber}</span>}
               </div>
               
-              <div className={styles.formGroup}>
+              <div className={styles.checkoutFormGroup}>
                 <label>Nome no Cartão*</label>
                 <input
                   type="text"
@@ -230,13 +249,13 @@ const CheckoutPage = () => {
                   value={formData.cardName}
                   onChange={handleInputChange}
                   placeholder="Como no cartão"
-                  className={errors.cardName ? styles.errorInput : ''}
+                  className={errors.cardName ? styles.checkoutErrorInput : ''}
                 />
-                {errors.cardName && <span className={styles.errorMessage}>{errors.cardName}</span>}
+                {errors.cardName && <span className={styles.checkoutErrorMessage}>{errors.cardName}</span>}
               </div>
               
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
+              <div className={styles.checkoutFormRow}>
+                <div className={styles.checkoutFormGroup}>
                   <label>Validade*</label>
                   <input
                     type="text"
@@ -244,12 +263,12 @@ const CheckoutPage = () => {
                     value={formData.cardExpiry}
                     onChange={handleInputChange}
                     placeholder="MM/AA"
-                    className={errors.cardExpiry ? styles.errorInput : ''}
+                    className={errors.cardExpiry ? styles.checkoutErrorInput : ''}
                   />
-                  {errors.cardExpiry && <span className={styles.errorMessage}>{errors.cardExpiry}</span>}
+                  {errors.cardExpiry && <span className={styles.checkoutErrorMessage}>{errors.cardExpiry}</span>}
                 </div>
                 
-                <div className={styles.formGroup}>
+                <div className={styles.checkoutFormGroup}>
                   <label>CVV*</label>
                   <input
                     type="text"
@@ -257,20 +276,20 @@ const CheckoutPage = () => {
                     value={formData.cardCvv}
                     onChange={handleInputChange}
                     placeholder="000"
-                    className={errors.cardCvv ? styles.errorInput : ''}
+                    className={errors.cardCvv ? styles.checkoutErrorInput : ''}
                   />
-                  {errors.cardCvv && <span className={styles.errorMessage}>{errors.cardCvv}</span>}
+                  {errors.cardCvv && <span className={styles.checkoutErrorMessage}>{errors.cardCvv}</span>}
                 </div>
               </div>
             </div>
           )}
         </div>
         
-        <div className={styles.actions}>
-          <Link to="/carrinho" className={styles.backLink}>
+        <div className={styles.checkoutActions}>
+          <Link to="/carrinho" className={styles.checkoutBackLink}>
             ← Voltar para o carrinho
           </Link>
-          <button type="submit" className={styles.submitButton}>
+          <button type="submit" className={styles.checkoutSubmitButton}>
             Confirmar Pagamento
           </button>
         </div>

@@ -1,11 +1,11 @@
 /* src/componentes/Checkout/checkoutPage.module.css */
-.container {
+.checkoutContainer {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.title {
+.checkoutTitle {
   text-align: center;
   margin-bottom: 40px;
   color: #333;
@@ -18,14 +18,14 @@
   gap: 40px;
 }
 
-.section {
+.checkoutSection {
   background-color: #fff;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.sectionTitle {
+.checkoutSectionTitle {
   margin-top: 0;
   margin-bottom: 25px;
   color: #444;
@@ -34,11 +34,11 @@
   border-bottom: 1px solid #eee;
 }
 
-.formGroup {
+.checkoutFormGroup {
   margin-bottom: 20px;
 }
 
-.formGroup label {
+.checkoutFormGroup label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
@@ -46,55 +46,58 @@
   font-size: 0.95rem;
 }
 
-.formGroup input,
-.formGroup textarea,
-.formGroup select {
-  width: 100%;
-  padding: 12px 15px;
+.checkoutFormGroup input,
+.checkoutFormGroup textarea,
+.checkoutFormGroup select {
+  width: 90%; /* Reduzido de 100% para 90% */
+  padding: 10px;
+  padding-left: 15px; /* Adicionado espaçamento lateral esquerdo */
+  padding-right: 15px; /* Adicionado espaçamento lateral direito */
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 1rem;
+  box-sizing: border-box; /* Garante que o padding seja incluído no tamanho total */
   transition: border-color 0.3s ease;
 }
 
-.formGroup input:focus,
-.formGroup textarea:focus {
+.checkoutFormGroup input:focus,
+.checkoutFormGroup textarea:focus {
   border-color: #ff8c00;
   outline: none;
 }
 
-.formGroup textarea {
+.checkoutFormGroup textarea {
   resize: vertical;
   min-height: 80px;
 }
 
-.formRow {
+.checkoutFormRow {
   display: flex;
   gap: 20px;
 }
 
-.formRow .formGroup {
+.checkoutFormRow .checkoutFormGroup {
   flex: 1;
 }
 
-.errorInput {
+.checkoutErrorInput {
   border-color: #ff4d4d !important;
 }
 
-.errorMessage {
+.checkoutErrorMessage {
   color: #ff4d4d;
   font-size: 0.85rem;
   margin-top: 5px;
   display: block;
 }
 
-.paymentMethods {
+.checkoutPaymentMethods {
   display: flex;
   gap: 15px;
   margin-bottom: 30px;
 }
 
-.paymentOption {
+.checkoutPaymentOption {
   flex: 1;
   display: flex;
   align-items: center;
@@ -106,16 +109,16 @@
   position: relative;
 }
 
-.paymentOption input {
+.checkoutPaymentOption input {
   margin-right: 10px;
 }
 
-.paymentOption span {
+.checkoutPaymentOption span {
   font-weight: 600;
   margin-right: 10px;
 }
 
-.paymentOption.active {
+.checkoutPaymentOption.active {
   border-color: #ff8c00;
   background-color: #fff9f0;
 }
@@ -135,28 +138,28 @@
   height: 20px;
 }
 
-.pixContainer {
+.checkoutPixContainer {
   display: flex;
   gap: 30px;
   margin-top: 20px;
 }
 
-.pixCodeContainer,
-.qrCodeContainer {
+.checkoutPixCodeContainer,
+.checkoutQrCodeContainer {
   flex: 1;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
 }
 
-.pixCodeContainer h3,
-.qrCodeContainer h3 {
+.checkoutPixCodeContainer h3,
+.checkoutQrCodeContainer h3 {
   margin-top: 0;
   font-size: 1.1rem;
   color: #444;
 }
 
-.pixCode {
+.checkoutPixCode {
   background-color: #fff;
   padding: 15px;
   border-radius: 6px;
@@ -167,7 +170,7 @@
   border: 1px dashed #ccc;
 }
 
-.copyButton {
+.checkoutCopyButton {
   background-color: #ff8c00;
   color: white;
   border: none;
@@ -179,11 +182,11 @@
   width: 100%;
 }
 
-.copyButton:hover {
+.checkoutCopyButton:hover {
   background-color: #e67e00;
 }
 
-.qrCodePlaceholder {
+.checkoutQrCodePlaceholder {
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;
@@ -195,7 +198,7 @@
   border: 1px dashed #ccc;
 }
 
-.qrCodeFake {
+.checkoutQrCodeFake {
   width: 150px;
   height: 150px;
   background-color: #f0f0f0;
@@ -205,7 +208,7 @@
   align-items: center;
 }
 
-.qrCodeLines {
+.checkoutQrCodeLines {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -215,13 +218,13 @@
   background-size: 10px 10px;
 }
 
-.qrCodeText {
+.checkoutQrCodeText {
   font-weight: bold;
   color: #666;
   font-size: 1.5rem;
 }
 
-.pixInstructions {
+.checkoutPixInstructions {
   font-size: 0.9rem;
   color: #666;
   text-align: center;
@@ -232,26 +235,26 @@
   margin-top: 20px;
 }
 
-.actions {
+.checkoutActions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 30px;
 }
 
-.backLink {
+.checkoutBackLink {
   color: #ff8c00;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
-.backLink:hover {
+.checkoutBackLink:hover {
   color: #e67e00;
   text-decoration: underline;
 }
 
-.submitButton {
+.checkoutSubmitButton {
   background-color: #ff8c00;
   color: white;
   border: none;
@@ -263,6 +266,6 @@
   transition: background-color 0.3s ease;
 }
 
-.submitButton:hover {
+.checkoutSubmitButton:hover {
   background-color: #e67e00;
 }
