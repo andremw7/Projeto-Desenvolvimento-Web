@@ -13,6 +13,7 @@ function Produtos() {
   const [faixaEtariaSelecionada, setFaixaEtariaSelecionada] = useState('');
   const [ordenacao, setOrdenacao] = useState('');
   const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
+  const [searchTerm, setSearchTerm] = useState(''); // Estado para o termo de pesquisa
   const { isAuthenticated, userId, isAdmin } = useAuth(); // Usar o estado de autenticação e ID do usuário do AuthContext
   const navigate = useNavigate();
 
@@ -26,6 +27,7 @@ function Produtos() {
   const produtosFiltrados = produtos
     .filter(produto => {
       return (
+        (!searchTerm || produto.nome.toLowerCase().includes(searchTerm.toLowerCase())) && // Filtrar por nome
         (!marcaSelecionada || produto.marca.toLowerCase() === marcaSelecionada.toLowerCase()) &&
         (!tipoSelecionado || produto.tipo.toLowerCase() === tipoSelecionado.toLowerCase()) &&
         (!faixaEtariaSelecionada || produto.faixaEtaria.toLowerCase() === faixaEtariaSelecionada.toLowerCase())
@@ -94,10 +96,10 @@ function Produtos() {
           </div>
         )}
 
-        <div class="content-produtos">
-          <section class="products">
+        <div className="content-produtos">
+          <section className="products">
             <h2>Classes de Produtos</h2>
-            <div class="product-grid">
+            <div className="product-grid">
               <figure>
                 <a href="produtos_formula.html">
                   <img src={formula} alt="Ração Premium para Cães" />
@@ -117,12 +119,23 @@ function Produtos() {
           </section>
         </div>
 
+        {/* Barra de pesquisa */}
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Pesquisar por nome do produto..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+
         {/* Filtros */}
-        <div class="filter-containerr">
+        <div className="filter-containerr">
           {/* Filtro por Marca */}
-          <div class="filter-buttons">
+          <div className="filter-buttons">
             <button>Filtrar por Marca</button>
-            <div class="filter-dropdown">
+            <div className="filter-dropdown">
               <button className={marcaSelecionada === '' ? 'selected' : ''} onClick={() => setMarcaSelecionada('')}>Todos</button>
               <button className={marcaSelecionada === 'Fórmula Natural' ? 'selected' : ''} onClick={() => setMarcaSelecionada('Fórmula Natural')}>Fórmula</button>
               <button className={marcaSelecionada === 'Origens' ? 'selected' : ''} onClick={() => setMarcaSelecionada('Origens')}>Origens</button>
@@ -131,9 +144,9 @@ function Produtos() {
           </div>
 
           {/* Filtro por Tipo */}
-          <div class="filter-buttons">
+          <div className="filter-buttons">
             <button>Filtrar por Tipo</button>
-            <div class="filter-dropdown">
+            <div className="filter-dropdown">
               <button className={tipoSelecionado === '' ? 'selected' : ''} onClick={() => setTipoSelecionado('')}>Todos</button>
               <button className={tipoSelecionado === 'ração' ? 'selected' : ''} onClick={() => setTipoSelecionado('ração')}>Ração</button>
               <button className={tipoSelecionado === 'petisco' ? 'selected' : ''} onClick={() => setTipoSelecionado('petisco')}>Petisco</button>
@@ -141,9 +154,9 @@ function Produtos() {
           </div>
 
           {/* Filtro por Faixa Etária */}
-          <div class="filter-buttons">
+          <div className="filter-buttons">
             <button>Filtrar por Faixa Etária</button>
-            <div class="filter-dropdown">
+            <div className="filter-dropdown">
               <button className={faixaEtariaSelecionada === '' ? 'selected' : ''} onClick={() => setFaixaEtariaSelecionada('')}>Todos</button>
               <button className={faixaEtariaSelecionada === 'filhotes' ? 'selected' : ''} onClick={() => setFaixaEtariaSelecionada('filhotes')}>Filhotes</button>
               <button className={faixaEtariaSelecionada === 'adultos' ? 'selected' : ''} onClick={() => setFaixaEtariaSelecionada('adultos')}>Adultos</button>
@@ -152,9 +165,9 @@ function Produtos() {
           </div>
 
           {/* Filtro por Ordenação */}
-          <div class="filter-buttons">
+          <div className="filter-buttons">
             <button>Ordenar</button>
-            <div class="filter-dropdown">
+            <div className="filter-dropdown">
               <button className={ordenacao === 'preco-asc' ? 'selected' : ''} onClick={() => setOrdenacao('preco-asc')}>Preço: Menor para Maior</button>
               <button className={ordenacao === 'preco-desc' ? 'selected' : ''} onClick={() => setOrdenacao('preco-desc')}>Preço: Maior para Menor</button>
               <button className={ordenacao === 'nome-asc' ? 'selected' : ''} onClick={() => setOrdenacao('nome-asc')}>Nome: A-Z</button>
@@ -163,9 +176,9 @@ function Produtos() {
           </div>
         </div>
 
-        <div class="product-grid-two-columns">
+        <div className="product-grid-two-columns">
           {produtosFiltrados.map((produto, index) => (
-            <div class="product-card" key={index}>
+            <div className="product-card" key={index}>
               <img src={`/assets${produto.imagem}`} alt={produto.nome} />
               <h3>{produto.nome}</h3>
               <h4><strong>Preço:</strong> R$ {produto.preco.toFixed(2)}</h4>

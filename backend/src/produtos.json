@@ -21,7 +21,7 @@
     "marca": "Magnus",
     "excluido": false,
     "imagem": "/sache_magnus.png",
-    "estoque": 14
+    "estoque": 3
   },
   {
     "id": 3,
@@ -154,5 +154,41 @@
     "excluido": true,
     "imagem": "nome.png",
     "estoque": 12
+  },
+  {
+    "id": 14,
+    "nome": "sadasdasd",
+    "preco": 123123,
+    "faixaEtaria": "filhotes",
+    "descricao": "sdadasdasd",
+    "tipo": "ração",
+    "marca": "ewqqweqwe",
+    "excluido": true,
+    "imagem": "dsadad.png",
+    "estoque": 12
+  },
+  {
+    "id": 15,
+    "nome": "dasdasd",
+    "preco": 21312,
+    "faixaEtaria": "filhotes",
+    "descricao": "dasdas",
+    "tipo": "ração",
+    "marca": "adsd",
+    "excluido": true,
+    "imagem": "adadasd.png",
+    "estoque": 12
+  },
+  {
+    "id": 16,
+    "nome": "hguygyugu",
+    "preco": 65675675,
+    "faixaEtaria": "filhotes",
+    "descricao": "uiguighiu",
+    "tipo": "ração",
+    "marca": "gygyuhj",
+    "excluido": true,
+    "imagem": "hjbhjb.png",
+    "estoque": 5656777777777
   }
 ]

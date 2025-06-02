@@ -104,5 +104,44 @@
         "preco": 5.5
       }
     ]
+  },
+  {
+    "pedidoId": 8,
+    "usuarioId": 11,
+    "dataCompra": "2025-05-31T01:42:01.534Z",
+    "totalPrice": 5.5,
+    "itens": [
+      {
+        "produtoId": 2,
+        "quantidade": 1,
+        "preco": 5.5
+      }
+    ]
+  },
+  {
+    "pedidoId": 9,
+    "usuarioId": 11,
+    "dataCompra": "2025-05-31T01:47:45.347Z",
+    "totalPrice": 38.5,
+    "itens": [
+      {
+        "produtoId": 2,
+        "quantidade": 7,
+        "preco": 5.5
+      }
+    ]
+  },
+  {
+    "pedidoId": 10,
+    "usuarioId": 11,
+    "dataCompra": "2025-05-31T01:52:31.273Z",
+    "totalPrice": 16.5,
+    "itens": [
+      {
+        "produtoId": 2,
+        "quantidade": 3,
+        "preco": 5.5
+      }
+    ]
   }
 ]
