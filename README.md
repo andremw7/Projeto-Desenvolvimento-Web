@@ -23,6 +23,7 @@ The ADIMAX PET SHOP project is a fully functional online store system developed 
 - **Authentication:** Login and registration for users and administrators.
 - **User Profile:** View personal data and purchase history.
 - **Admin Panel:** Manage products and orders.
+- **Product Search:** Search for products by name directly in the header dropdown.
 
 ### Admin Features:
 - **Add Products:** Add new products to the catalog.
@@ -49,7 +50,7 @@ The ADIMAX PET SHOP project is a fully functional online store system developed 
 
 The diagram below illustrates the navigation flow of the application, including login, permissions, cart access, admin panel, and checkout:
 
-![Navigation Diagram](./navegacao.jpeg)
+![Navigation Diagram](./diagrma_navegacao.jpeg)
 
 ---
 
