@@ -73,8 +73,13 @@ router.post('/finalizarCompra', (req, res) => {
 // Rota para buscar o status de uma compra específica do usuário logado
 router.get('/status-compra/:pedidoId', (req, res) => {
     const { pedidoId } = req.params;
-    const userId = req.userId;
+    // Lê o userId do header x-user-id (enviado pelo frontend)
+    const userId = req.headers['x-user-id'] ? parseInt(req.headers['x-user-id'], 10) : undefined;
     const pedidosPath = path.join(bancoJsonPath, 'pedidos.json');
+
+    if (!userId) {
+        return res.status(400).json({ error: 'userId não fornecido.' });
+    }
 
     try {
         // Lê todos os pedidos e busca o pedido do usuário logado

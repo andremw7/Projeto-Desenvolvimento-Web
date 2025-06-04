@@ -21,7 +21,7 @@
     "marca": "Magnus",
     "excluido": false,
     "imagem": "/sache_magnus.png",
-    "estoque": 3
+    "estoque": 0
   },
   {
     "id": 3,
@@ -45,7 +45,7 @@
     "marca": "Magnus",
     "excluido": false,
     "imagem": "/magnos_gatos_adultos.png",
-    "estoque": 80
+    "estoque": 77
   },
   {
     "id": 5,
@@ -190,5 +190,17 @@
     "excluido": true,
     "imagem": "hjbhjb.png",
     "estoque": 5656777777777
+  },
+  {
+    "id": 17,
+    "nome": "Sachê Magnus Cães",
+    "preco": 13,
+    "faixaEtaria": "filhotes",
+    "descricao": "dasdasd",
+    "tipo": "ração",
+    "marca": "asdasda",
+    "excluido": true,
+    "imagem": "dsasd.png",
+    "estoque": 123
   }
 ]

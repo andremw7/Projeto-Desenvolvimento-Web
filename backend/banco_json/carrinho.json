@@ -1,16 +1,16 @@
 [
   {
-    "id": 2,
-    "nome": "Sachê Magnus Cães",
-    "preco": 5.5,
+    "id": 3,
+    "nome": "Magnus Control Tártaro",
+    "preco": 25,
     "faixaEtaria": "adultos",
-    "descricao": "Alimento úmido completo e balanceado para cães adultos.",
-    "tipo": "petisco",
+    "descricao": "Ajuda na redução do tártaro e melhora da saúde bucal dos cães.",
+    "tipo": "ração",
     "marca": "Magnus",
     "excluido": false,
-    "imagem": "/sache_magnus.png",
-    "estoque": 3,
+    "imagem": "/magnus_control_tartaro.png",
+    "estoque": 107,
     "userId": 11,
-    "quantity": 1
+    "quantity": 5
   }
 ]

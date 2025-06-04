@@ -1,23 +1,29 @@
 // src/pages/StatusCompra/StatusCompra.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext'; // Importar o AuthContext
+import { useAuth } from '../../context/AuthContext';
 import './statusCompra.css';
 
 function StatusCompra() {
   const { pedidoId } = useParams();
-  const { userId, isAdmin } = useAuth(); // Usar o estado de autenticação e verificar se é admin
+  const { userId, isAdmin, loading } = useAuth(); // Inclua loading do AuthContext
   const [pedido, setPedido] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loadingPedido, setLoadingPedido] = useState(true);
 
   useEffect(() => {
+    // Aguarda o carregamento do contexto de autenticação
+    if (loading) return;
+
     const fetchPedido = async () => {
       try {
-        const url = isAdmin 
-          ? `http://localhost:3000/admin/pedido/${pedidoId}` // Rota para admin puxar diretamente pelo pedidoId
+        const url = isAdmin
+          ? `http://localhost:3000/admin/pedido/${pedidoId}`
           : `http://localhost:3000/status-compra/${pedidoId}`;
-        
-        const headers = isAdmin ? {} : { 'x-user-id': userId }; // Enviar o userId apenas se não for admin
+
+        // Para usuários comuns, envie o userId no header
+        const headers = isAdmin
+          ? {}
+          : { 'x-user-id': userId };
 
         const response = await fetch(url, { headers });
         if (!response.ok) {
@@ -28,15 +34,16 @@ function StatusCompra() {
         setPedido(data);
       } catch (err) {
         console.error('Erro ao buscar o pedido:', err);
+        setPedido(null);
       } finally {
-        setLoading(false);
+        setLoadingPedido(false);
       }
     };
 
     fetchPedido();
-  }, [pedidoId, userId, isAdmin]);
+  }, [pedidoId, userId, isAdmin, loading]);
 
-  if (loading) return <p className="statusInfo">Carregando pedido...</p>;
+  if (loading || loadingPedido) return <p className="statusInfo">Carregando pedido...</p>;
   if (!pedido) return <p className="statusInfo">Pedido não encontrado.</p>;
 
   return (
