@@ -63,37 +63,41 @@ O **ADIMAX PET SHOP** é uma aplicação web completa de e-commerce para pet sho
 
 ## 🗺️ 3. Diagrama de Navegação
 
-
 ```mermaid
 graph TD
   Home[Início]
   Produtos[Produtos]
   Produto[Detalhe do Produto]
-  Carrinho[Carrinho]
-  Checkout[Finalizar Pedido]
-  Status[Status da Compra]
   Login[Login]
   Register[Registrar]
+  Usuario[Usuário]
+  Admin[Admin]
+  Carrinho[Carrinho (Usuário Logado)]
+  Checkout[Finalizar Pedido]
+  Status[Status da Compra]
   Perfil[Perfil Usuário]
   Pedidos[Meus Pedidos]
-  Admin[Admin]
+  AdminPerfil[Perfil Admin]
   AdminProdutos[Admin Produtos]
   AdminPedidos[Admin Pedidos]
-  AdminPerfil[Perfil Admin]
 
   Home --> Produtos
   Produtos --> Produto
-  Produto --> Carrinho
+
+  Home --> Login
+  Login --> Usuario
+  Login --> Admin
+  Login --> Register
+
+  Usuario --> Carrinho
+  Usuario --> Perfil
+  Perfil --> Pedidos
   Carrinho --> Checkout
   Checkout --> Status
-  Home --> Login
-  Login --> Register
-  Login --> Perfil
-  Perfil --> Pedidos
-  Home --> Admin
+
+  Admin --> AdminPerfil
   Admin --> AdminProdutos
   Admin --> AdminPedidos
-  Admin --> AdminPerfil
 ```
 
 ---
