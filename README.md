@@ -72,7 +72,7 @@ graph TD
   Register[Registrar]
   Usuario[Usuário]
   Admin[Admin]
-  Carrinho[Carrinho (Usuário Logado)]
+  CarrinhoUsuario[Carrinho]
   Checkout[Finalizar Pedido]
   Status[Status da Compra]
   Perfil[Perfil Usuário]
@@ -89,10 +89,10 @@ graph TD
   Login --> Admin
   Login --> Register
 
-  Usuario --> Carrinho
+  Usuario --> CarrinhoUsuario
   Usuario --> Perfil
   Perfil --> Pedidos
-  Carrinho --> Checkout
+  CarrinhoUsuario --> Checkout
   Checkout --> Status
 
   Admin --> AdminPerfil
