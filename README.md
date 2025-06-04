@@ -63,7 +63,6 @@ O **ADIMAX PET SHOP** é uma aplicação web completa de e-commerce para pet sho
 
 ## 🗺️ 3. Diagrama de Navegação
 
-<img src="./diagrama_navegacao.jpeg" alt="Diagrama de Navegação" width="700"/>
 
 ```mermaid
 graph TD
