@@ -5,12 +5,16 @@ import { useAuth } from '../../context/AuthContext';
 import './perfil_base.css';
 
 const ProfilePage = () => {
+  // Obtém informações de autenticação do contexto
   const { isAuthenticated, userId } = useAuth();
+  // Estado para armazenar os dados do perfil do usuário
   const [userProfile, setUserProfile] = useState(null);
+  // Estado de carregamento e erro
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // Inicializar useNavigate
 
+  // Carrega os dados do perfil do usuário ao montar o componente
   useEffect(() => {
     if (isAuthenticated && userId) {
       fetch(`http://localhost:3000/usuario/${userId}`)
@@ -34,6 +38,7 @@ const ProfilePage = () => {
     }
   }, [isAuthenticated, userId]);
 
+  // Formata a data para exibição
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
       year: 'numeric',
@@ -44,10 +49,12 @@ const ProfilePage = () => {
     });
   };
 
+  // Redireciona para a página de edição de perfil
   const handleEditProfile = () => {
     navigate('/perfil/edit'); // Redirecionar para a página de edição de perfil
   };
 
+  // Renderizações condicionais para estados de autenticação, carregamento e erro
   if (!isAuthenticated) {
     return <p className="perfil-aviso">Você precisa estar logado para acessar o perfil.</p>;
   }
@@ -66,6 +73,7 @@ const ProfilePage = () => {
 
   return (
     <div className="perfil-base-page">
+      {/* Abas de navegação do perfil */}
       <div className="perfil-base-tabs">
         <Link to="/perfil/dados" className="perfil-base-tab active">Perfil</Link>
         <Link to="/perfil/pedidos" className="perfil-base-tab">Pedidos</Link>
@@ -147,6 +155,7 @@ const ProfilePage = () => {
             </div>
 
             <div className="perfil-base-actions">
+              {/* Botão para editar o perfil */}
               <button 
                 onClick={handleEditProfile}
                 className="perfil-base-edit-button"

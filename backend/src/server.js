@@ -1,17 +1,28 @@
 const express = require('express');
-const routes = require('./routes');
 const cors = require('cors');
+const path = require('path');
+
+// Importar as rotas separadas
+const produtosRoutes = require('./routes/produtos');
+const carrinhoRoutes = require('./routes/carrinho');
+const pedidosRoutes = require('./routes/pedidos');
+const usuariosRoutes = require('./routes/usuarios');
+
 const app = express();
 
-app.use(express.json());
 app.use(cors());
-app.use(routes);
+app.use(express.json());
 
+// Usar as rotas separadas
+app.use(produtosRoutes);
+app.use(carrinhoRoutes);
+app.use(pedidosRoutes);
+app.use(usuariosRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+// Servir arquivos estáticos (se necessário)
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });

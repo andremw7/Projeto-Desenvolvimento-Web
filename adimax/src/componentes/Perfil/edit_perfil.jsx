@@ -5,6 +5,7 @@ import './edit_perfil.css';
 
 function EditPerfil() {
   const { userId } = useAuth();
+  // Estados para os campos do formulário
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,6 +14,7 @@ function EditPerfil() {
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
+  // Carrega os dados do usuário ao montar o componente
   useEffect(() => {
     fetch(`http://localhost:3000/usuario/${userId}`)
       .then(response => {
@@ -32,6 +34,7 @@ function EditPerfil() {
       });
   }, [userId]);
 
+  // Função para lidar com o envio do formulário de edição de perfil
   const handleEditPerfil = async (e) => {
     e.preventDefault();
 
@@ -41,6 +44,7 @@ function EditPerfil() {
     }
 
     try {
+      // Envia os dados atualizados para a API
       const response = await fetch(`http://localhost:3000/usuario/${userId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -71,8 +75,10 @@ function EditPerfil() {
     <main>
       <div className="edit-perfil-content">
         <h2>Editar Perfil</h2>
+        {/* Mensagens de erro e sucesso */}
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}
+        {/* Formulário de edição de perfil */}
         <form onSubmit={handleEditPerfil} className="edit-perfil-form">
           <label htmlFor="username">Usuário:</label>
           <input

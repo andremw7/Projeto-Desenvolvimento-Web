@@ -6,6 +6,7 @@ import './adminNavigation.css';
 function EditProduto() {
   const { id } = useParams(); // Obter o ID do produto da URL
   const navigate = useNavigate();
+  // Estado para armazenar os dados do produto a ser editado
   const [product, setProduct] = useState({
     nome: '',
     preco: '',
@@ -17,9 +18,11 @@ function EditProduto() {
     estoque: '',
   });
 
+  // Estado para controlar o envio do formulário e mensagens de sucesso
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
+  // Carrega os dados do produto ao montar o componente
   useEffect(() => {
     // Buscar informações do produto pelo ID
     fetch(`http://localhost:3000/produto/${id}`)
@@ -38,6 +41,7 @@ function EditProduto() {
       });
   }, [id]);
 
+  // Atualiza o estado do produto conforme o usuário digita nos campos do formulário
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct((prev) => ({
@@ -46,6 +50,7 @@ function EditProduto() {
     }));
   };
 
+  // Envia o formulário para a API para atualizar o produto
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -58,7 +63,7 @@ function EditProduto() {
       .then((response) => {
         if (response.ok) {
           setSuccessMessage('Produto atualizado com sucesso!');
-          setTimeout(() => navigate(-1), 1500); // Voltar à página anterior
+          setTimeout(() => navigate(-1), 1500); // Voltar à página anterior após sucesso
         } else {
           response.json().then((error) => {
             alert(`Erro ao atualizar o produto: ${error.error || 'Erro desconhecido'}`);
@@ -71,6 +76,7 @@ function EditProduto() {
 
   return (
     <>
+      {/* Navegação do admin */}
       <div className="admin-navigation">
         <button onClick={() => window.location.href = '/admin/produtos'}>Meus Produtos</button>
         <button onClick={() => window.location.href = '/admin/vendas'}>Vendas/Pedidos</button>
@@ -79,7 +85,9 @@ function EditProduto() {
         <button onClick={() => window.location.href = '/register'}>Registrar Admin</button>
       </div>
       <div className="add-product-page-container">
+        {/* Formulário para editar produto */}
         <form onSubmit={handleSubmit} className="add-product-form">
+          {/* Campos do formulário */}
           <div className="add-product-form-group">
             <label htmlFor="nome">Nome do Produto</label>
             <input
@@ -183,10 +191,12 @@ function EditProduto() {
             />
           </div>
 
+          {/* Botão de envio */}
           <button type="submit" className="add-product-submit-btn" disabled={isSubmitting}>
             {isSubmitting ? 'Atualizando...' : 'Atualizar Produto'}
           </button>
 
+          {/* Mensagem de sucesso */}
           {successMessage && <p className="add-product-success-message">{successMessage}</p>}
         </form>
       </div>

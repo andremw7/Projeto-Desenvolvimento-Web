@@ -5,18 +5,20 @@ import { useAuth } from '../../context/AuthContext'; // Importar o AuthContext
 import styles from './finalizarPedido.module.css';
 
 const FinalizarPedido = () => {
+  // Estado para armazenar os itens do carrinho
   const [cart, setCart] = useState([]);
   const { userId } = useAuth(); // Usar o ID do usuário do AuthContext
-  const navigate = useNavigate(); // Inicializar useNavigate
+  const navigate = useNavigate();
 
+  // Carrega os itens do carrinho ao montar o componente
   useEffect(() => {
-    fetch(`http://localhost:3000/carrinho/${userId}`) // Passar o userId na URL
+    fetch(`http://localhost:3000/carrinho/${userId}`)
       .then(response => response.json())
       .then(data => setCart(data))
       .catch(error => console.error('Erro ao carregar o carrinho:', error));
   }, [userId]);
 
-  // Cálculos
+  // Cálculos de subtotal, frete e total
   const subtotal = cart.reduce((sum, item) => sum + (item.preco * item.quantity), 0);
   const frete = 15.00; // Valor fixo de exemplo
   const total = subtotal + frete;
@@ -24,8 +26,8 @@ const FinalizarPedido = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Resumo do Pedido</h1>
-      
       <div className={styles.orderSummary}>
+        {/* Lista de itens do pedido */}
         <div className={styles.orderItems}>
           {cart.map(item => (
             <div key={item.id} className={styles.orderItem}>
@@ -41,7 +43,7 @@ const FinalizarPedido = () => {
             </div>
           ))}
         </div>
-
+        {/* Totais do pedido */}
         <div className={styles.summaryTotals}>
           <div className={styles.summaryRow}>
             <span>Subtotal ({cart.length} itens)</span>
@@ -56,7 +58,7 @@ const FinalizarPedido = () => {
             <span>R$ {total.toFixed(2).replace('.', ',')}</span>
           </div>
         </div>
-
+        {/* Botões de ação */}
         <div className={styles.buttonsContainer}>
           <Link to="/produtos" className={styles.backButton}>
             Adicionar mais produtos

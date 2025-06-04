@@ -7,20 +7,28 @@ import '../../App.css';
 import './header.css';
 
 function Header() {
+  // Obtém informações de autenticação e permissões do contexto
   const { isAuthenticated, isAdmin, logout } = useAuth();
+  // Estado para controlar a abertura do menu do usuário
   const [isOpen, setIsOpen] = useState(false);
+  // Referências para detectar cliques fora dos menus
   const dropdownRef = useRef(null);
   const searchRef = useRef(null);
+  // Estado para controlar a abertura do dropdown de busca
   const [searchDropdownOpen, setSearchDropdownOpen] = useState(false);
+  // Estado para armazenar todos os produtos carregados
   const [produtos, setProdutos] = useState([]);
+  // Estado para o termo de busca digitado
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
+  // Função para logout e redirecionamento
   const handleLogout = () => {
     logout();
     window.location.href = '/';
   };
 
+  // Efeito para fechar dropdowns ao clicar fora deles
   useEffect(() => {
     const handleClickOutside = (event) => {
       const clickedOutsideSearch =
@@ -46,24 +54,26 @@ function Header() {
     };
   }, []);
 
+  // Carrega todos os produtos para busca ao montar o componente
   useEffect(() => {
     fetch('http://localhost:3000/produtos')
       .then((response) => response.json())
       .then((data) => {
-        console.log('Produtos carregados:', data); // Depuração
+        // console.log('Produtos carregados:', data);
         setProdutos(data);
       })
       .catch((error) => console.error('Erro ao carregar os produtos:', error));
   }, []);
 
+  // Filtra os produtos conforme o termo de busca (mostra até 3)
   const filteredProdutos = produtos
     .filter((produto) =>
       produto.nome.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .slice(0, 3);
 
+  // Ao clicar em um produto do dropdown, navega para a página do produto
   const handleProductClick = (produtoId) => {
-    console.log(`Tentando redirecionar para o produto com ID: ${produtoId}`);
     setSearchDropdownOpen(false); // fecha dropdown ao clicar
     navigate(`/produto/${produtoId}`);
   };
@@ -72,6 +82,7 @@ function Header() {
     <>
       <header>
         <nav>
+          {/* Logo da loja */}
           <img
             src={reactLogo}
             alt="Logo ADIMAX"
@@ -79,6 +90,7 @@ function Header() {
             width="50px"
             height="50px"
           />
+          {/* Barra de busca de produtos */}
           <div className="search-container-header">
             <input
               type="text"
@@ -90,6 +102,7 @@ function Header() {
               }}
               className="search-input-header"
             />
+            {/* Dropdown de sugestões de produtos */}
             {searchDropdownOpen && (
               <div
                 className="search-dropdown"
@@ -126,6 +139,7 @@ function Header() {
               </div>
             )}
           </div>
+          {/* Navegação principal */}
           <ul>
             <li>
               <CustomLink to="/">Início</CustomLink>
@@ -133,6 +147,7 @@ function Header() {
             <li>
               <CustomLink to="/produtos">Produtos</CustomLink>
             </li>
+            {/* Menu do usuário autenticado */}
             {isAuthenticated && (
               <div className="user-menu" ref={dropdownRef}>
                 <button
@@ -143,6 +158,7 @@ function Header() {
                 >
                   👤
                 </button>
+                {/* Dropdown do usuário */}
                 {isOpen && (
                   <div className="dropdown dropdown-vertical">
                     <CustomLink to="/carrinho">🛒 Carrinho</CustomLink>
@@ -156,6 +172,7 @@ function Header() {
                 )}
               </div>
             )}
+            {/* Botão de login para não autenticados */}
             {!isAuthenticated && (
               <li>
                 <CustomLink to="/login" className="logout-button">

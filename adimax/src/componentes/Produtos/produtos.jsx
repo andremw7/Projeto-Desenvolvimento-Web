@@ -7,6 +7,7 @@ import magnus from '../../assets/magnus.png';
 import origins from '../../assets/origins.png';
 
 function Produtos() {
+  // Estados para filtros, busca, modal e produtos
   const [produtos, setProdutos] = useState([]);
   const [marcaSelecionada, setMarcaSelecionada] = useState('');
   const [tipoSelecionado, setTipoSelecionado] = useState('');
@@ -18,6 +19,7 @@ function Produtos() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams(); // Capturar parâmetros da URL
 
+  // Carrega os produtos ao montar o componente
   useEffect(() => {
     fetch('http://localhost:3000/produtos')
       .then(response => response.json())
@@ -25,6 +27,7 @@ function Produtos() {
       .catch(error => console.error('Erro ao carregar os produtos:', error));
   }, []);
 
+  // Aplica filtro de marca se presente na URL
   useEffect(() => {
     const marca = searchParams.get('marca'); // Capturar o filtro de marca da URL
     if (marca) {
@@ -32,6 +35,7 @@ function Produtos() {
     }
   }, [searchParams]);
 
+  // Filtra e ordena os produtos conforme os filtros e busca
   const produtosFiltrados = produtos
     .filter(produto => {
       return (
@@ -49,10 +53,12 @@ function Produtos() {
       return 0;
     });
 
+  // Redireciona para a tela de edição do produto
   const handleEditProduct = (produtoId) => {
-    navigate(`/admin/edit-produto/${produtoId}`); // Redirecionar para a página de edição do produto
+    navigate(`/admin/edit-produto/${produtoId}`);
   };
 
+  // Adiciona produto ao carrinho (com modal para login)
   const handleAddToCart = (produtoId) => {
     if (!isAuthenticated) {
       setModalVisible(true); // Exibe o modal para usuários não logados
@@ -76,6 +82,7 @@ function Produtos() {
       .catch(error => alert(`Erro ao adicionar o produto ao carrinho: ${error.message}`));
   };
 
+  // Redireciona para a página de detalhes do produto
   const handleViewDetails = (produtoId) => {
     navigate(`/produto/${produtoId}`);
   };
@@ -83,7 +90,7 @@ function Produtos() {
   return (
     <>
       <main>
-        {/* Modal de confirmação */}
+        {/* Modal de confirmação de adição ao carrinho ou aviso de login */}
         {modalVisible && (
           <div className="modal-overlay">
             <div className="modal">
@@ -108,6 +115,7 @@ function Produtos() {
           <section className="products">
             <h2>Classes de Produtos</h2>
             <div className="product-grid">
+              {/* Imagens das marcas com filtro por marca ao clicar */}
               <figure>
                 <a href="/produtos?marca=Fórmula Natural">
                   <img src={formula} alt="Ração Premium para Cães" />
@@ -138,7 +146,7 @@ function Produtos() {
           />
         </div>
 
-        {/* Filtros */}
+        {/* Filtros de marca, tipo, faixa etária e ordenação */}
         <div className="filter-containerr">
           {/* Filtro por Marca */}
           <div className="filter-buttons">
@@ -184,6 +192,7 @@ function Produtos() {
           </div>
         </div>
 
+        {/* Grid de produtos filtrados */}
         <div className="product-grid-two-columns">
           {produtosFiltrados.map((produto, index) => (
             <div className="product-card" key={index}>

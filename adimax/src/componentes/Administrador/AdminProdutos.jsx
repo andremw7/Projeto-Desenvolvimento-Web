@@ -6,10 +6,11 @@ import './adminNavigation.css';
 
 function AdminProdutos() {
   const navigate = useNavigate(); // Inicializar useNavigate
-  const [products, setProducts] = useState([]);
-  const [editingId, setEditingId] = useState(null);
-  const [editForm, setEditForm] = useState({ id: '', nome: '', preco: '', estoque: '' });
+  const [products, setProducts] = useState([]); // Lista de produtos
+  const [editingId, setEditingId] = useState(null); // ID do produto em edição
+  const [editForm, setEditForm] = useState({ id: '', nome: '', preco: '', estoque: '' }); // Estado do formulário de edição
 
+  // Carrega os produtos ao montar o componente
   useEffect(() => {
     fetch('http://localhost:3000/produtos')
         .then(response => {
@@ -22,6 +23,7 @@ function AdminProdutos() {
         .catch(error => console.error('Erro ao carregar os produtos:', error));
   }, []);
 
+  // Ao clicar em editar, preenche o formulário com os dados do produto selecionado
   const handleEditClick = (product) => {
     setEditingId(product.id);
     setEditForm({
@@ -32,6 +34,7 @@ function AdminProdutos() {
     });
   };
 
+  // Atualiza o estado do formulário de edição conforme o usuário digita
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditForm(prev => ({
@@ -40,6 +43,7 @@ function AdminProdutos() {
     }));
   };
 
+  // Salva as alterações localmente (não envia para o backend)
   const handleSaveEdit = () => {
     setProducts(products.map(product => 
       product.id === editingId ? { ...editForm } : product
@@ -47,6 +51,7 @@ function AdminProdutos() {
     setEditingId(null);
   };
 
+  // Remove o produto do backend e da lista local
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/admin/delete-produto/${id}`, {
       method: 'DELETE',
@@ -66,6 +71,7 @@ function AdminProdutos() {
 
   return (
     <>
+      {/* Navegação do admin */}
       <div className="admin-navigation">
         <button onClick={() => window.location.href = '/admin/produtos'}>Meus Produtos</button>
         <button onClick={() => window.location.href = '/admin/vendas'}>Vendas/Pedidos</button>
@@ -91,6 +97,7 @@ function AdminProdutos() {
                 </tr>
               </thead>
               <tbody>
+                {/* Renderiza cada produto na tabela */}
                 {products.map((product) => (
                   <tr key={product.id}>
                     <td>{product.id}</td>
@@ -148,15 +155,17 @@ function AdminProdutos() {
                         </>
                       ) : (
                         <>
+                          {/* Redireciona para a tela de edição do produto */}
                           <button 
                             className="admin-produtos-edit-btn"
-                            onClick={() => navigate(`/admin/edit-produto/${product.id}`)} // Redirecionar para EditProduto com ID
+                            onClick={() => navigate(`/admin/edit-produto/${product.id}`)}
                           >
                             Editar
                           </button>
+                          {/* Remove o produto */}
                           <button 
                             className="admin-produtos-delete-btn"
-                            onClick={() => handleDelete(product.id)} // Chamar a rota DELETE
+                            onClick={() => handleDelete(product.id)}
                           >
                             Excluir
                           </button>

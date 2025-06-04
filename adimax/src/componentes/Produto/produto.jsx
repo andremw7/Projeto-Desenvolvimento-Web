@@ -6,11 +6,13 @@ import './produto.css';
 function Produto() {
   const { id } = useParams();
   const navigate = useNavigate(); // Inicializar useNavigate
+  // Estado para armazenar os dados do produto
   const [produto, setProduto] = useState(null);
   const [loading, setLoading] = useState(true);
   const { isAuthenticated, userId, isAdmin } = useAuth(); // Adicionado isAdmin
   const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
 
+  // Carrega os dados do produto ao montar o componente
   useEffect(() => {
     fetch(`http://localhost:3000/produto/${id}`)
       .then(response => {
@@ -29,10 +31,12 @@ function Produto() {
       });
   }, [id]);
 
+  // Redireciona para a tela de edição do produto (admin)
   const handleEditProduct = () => {
-    navigate(`/admin/edit-produto/${id}`); // Redirecionar para a página de edição do produto
+    navigate(`/admin/edit-produto/${id}`);
   };
 
+  // Adiciona produto ao carrinho (com modal para login)
   const handleAddToCart = () => {
     if (!isAuthenticated) {
       setModalVisible(true); // Exibe o modal para usuários não logados
@@ -66,7 +70,7 @@ function Produto() {
 
   return (
     <div className="produto-detalhes">
-      {/* Modal de confirmação */}
+      {/* Modal de confirmação/adicionar ao carrinho */}
       {modalVisible && (
         <div className="modal-overlay">
           <div className="modal">

@@ -10,24 +10,29 @@ const mainStyle = {
 };
 
 function Carrinho() {
-  const { userId, isAuthenticated } = useAuth(); // Adicionado isAuthenticated
+  // Obtém informações de autenticação do contexto
+  const { userId, isAuthenticated } = useAuth();
+  // Estado para armazenar os itens do carrinho
   const [cart, setCart] = useState([]);
 
+  // Carrega os itens do carrinho ao montar o componente ou quando userId/isAuthenticated mudam
   useEffect(() => {
-    if (isAuthenticated && userId) { // Garantir que o usuário está autenticado antes de buscar os dados
+    if (isAuthenticated && userId) {
       fetch(`http://localhost:3000/carrinho/${userId}`)
         .then(response => response.json())
         .then(data => {
+          // Garante que a quantidade não ultrapasse o estoque
           const updatedCart = data.map(item => ({
             ...item,
-            quantity: Math.min(item.quantity, item.estoque), // Garantir que a quantidade não ultrapasse o estoque
+            quantity: Math.min(item.quantity, item.estoque),
           }));
           setCart(updatedCart);
         })
         .catch(error => console.error('Erro ao carregar o carrinho:', error));
     }
-  }, [userId, isAuthenticated]); // Adicionado isAuthenticated como dependência
+  }, [userId, isAuthenticated]);
 
+  // Atualiza a quantidade de um item no carrinho (local e backend)
   const updateQuantity = (productId, change) => {
     const updatedCart = cart.map(item => {
       if (item.id === productId) {
@@ -38,7 +43,7 @@ function Carrinho() {
     });
     setCart(updatedCart);
 
-    // Atualizar quantidade no backend
+    // Atualiza quantidade no backend
     fetch('http://localhost:3000/updateCart', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -52,11 +57,12 @@ function Carrinho() {
     }).catch(error => console.error('Erro ao atualizar quantidade no backend:', error));
   };
 
+  // Remove um item do carrinho (local e backend)
   const removeItem = productId => {
     const updatedCart = cart.filter(item => item.id !== productId);
     setCart(updatedCart);
 
-    // Remover item no backend
+    // Remove item no backend
     fetch('http://localhost:3000/removeItem', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -71,10 +77,12 @@ function Carrinho() {
   return (
     <>
       <main style={mainStyle}>
+        {/* Renderiza o carrinho se houver itens, senão mostra mensagem de vazio */}
         {cart.length > 0 ? (
           <>
             <div className={styles['cart-container']}>
               <div className={styles['cart-body']}>
+                {/* Renderiza cada item do carrinho */}
                 {cart.map(item => {
                   const totalPrice = (item.preco * item.quantity).toFixed(2).replace('.', ',');
                   return (

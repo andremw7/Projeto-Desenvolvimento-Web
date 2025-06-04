@@ -4,11 +4,15 @@ import { Link, useNavigate } from 'react-router-dom'; // Adicionado useNavigate
 import './perfil.css';
 
 const PerfilPedidos = () => {
+  // Obtém informações de autenticação do contexto
   const { isAuthenticated, userId } = useAuth();
+  // Estado para armazenar as compras do usuário
   const [compras, setCompras] = useState([]);
+  // Estado de carregamento
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate(); // Inicializar useNavigate
 
+  // Carrega as compras do usuário ao montar o componente
   useEffect(() => {
     if (isAuthenticated && userId) {
       fetch(`http://localhost:3000/compras/${userId}`)
@@ -31,6 +35,7 @@ const PerfilPedidos = () => {
     }
   }, [isAuthenticated, userId]);
 
+  // Renderizações condicionais para estados de autenticação e carregamento
   if (!isAuthenticated) {
     return <p className="perfil-aviso">Você precisa estar logado para acessar os pedidos.</p>;
   }
@@ -41,12 +46,14 @@ const PerfilPedidos = () => {
 
   return (
     <div className="perfil-page">
+      {/* Abas de navegação do perfil */}
       <div className="tab-buttons">
         <Link to="/perfil/dados" className="tab-button">Perfil</Link>
         <Link to="/perfil/pedidos" className="tab-button active">Pedidos</Link>
       </div>
       <div className="perfil-container">
         <h2 className="perfil-titulo">Minhas Compras</h2>
+        {/* Tabela de compras */}
         {compras.length > 0 ? (
           <div className="compras-table-container">
             <table className="compras-table">
@@ -67,9 +74,10 @@ const PerfilPedidos = () => {
                     <td>R$ {compra.totalPrice.toFixed(2)}</td>
                     <td>{compra.status || 'Aprovado'}</td>
                     <td>
+                      {/* Botão para ver detalhes do pedido */}
                       <button 
                         className="detalhes-button" 
-                        onClick={() => navigate(`/status-compra/${compra.pedidoId}`)} // Substituído por useNavigate
+                        onClick={() => navigate(`/status-compra/${compra.pedidoId}`)}
                       >
                         Detalhes
                       </button>

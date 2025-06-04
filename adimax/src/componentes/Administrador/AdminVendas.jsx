@@ -4,8 +4,10 @@ import './adminVendas.css';
 import './adminNavigation.css';
 
 function AdminVendas() {
+  // Estado para armazenar a lista de pedidos
   const [pedidos, setPedidos] = useState([]);
 
+  // Carrega os pedidos ao montar o componente
   useEffect(() => {
     fetch('http://localhost:3000/admin/pedidos')
       .then(response => response.json())
@@ -15,6 +17,7 @@ function AdminVendas() {
 
   return (
     <>
+      {/* Navegação do admin */}
       <div className="admin-navigation">
         <button onClick={() => window.location.href = '/admin/produtos'}>Meus Produtos</button>
         <button onClick={() => window.location.href = '/admin/vendas'}>Vendas/Pedidos</button>
@@ -39,6 +42,7 @@ function AdminVendas() {
               </tr>
             </thead>
             <tbody>
+              {/* Renderiza cada pedido na tabela */}
               {pedidos.length > 0 ? (
                 pedidos.map(pedido => (
                   <tr key={pedido.pedidoId}>
@@ -47,6 +51,7 @@ function AdminVendas() {
                     <td>{new Date(pedido.dataCompra).toLocaleDateString()}</td>
                     <td>R$ {pedido.totalPrice.toFixed(2)}</td>
                     <td>
+                      {/* Botão para ver o status do pedido */}
                       <button 
                         className="status-button" 
                         onClick={() => window.location.href = `/status-compra/${pedido.pedidoId}`}

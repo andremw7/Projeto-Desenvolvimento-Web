@@ -5,7 +5,9 @@ import { useAuth } from '../../context/AuthContext';
 import styles from './checkoutPage.module.css';
 
 const CheckoutPage = () => {
+  // Estado para método de pagamento
   const [paymentMethod, setPaymentMethod] = useState('pix');
+  // Estado para os dados do formulário de entrega e pagamento
   const [formData, setFormData] = useState({
     cep: '',
     endereco: '',
@@ -17,7 +19,9 @@ const CheckoutPage = () => {
     cardExpiry: '',
     cardCvv: ''
   });
+  // Estado para erros de validação
   const [errors, setErrors] = useState({});
+  // Estado para código PIX gerado
   const [pixCode, setPixCode] = useState('');
   const { userId } = useAuth();
   const navigate = useNavigate();
@@ -27,11 +31,13 @@ const CheckoutPage = () => {
     generatePixCode();
   }, []);
 
+  // Função para gerar código aleatório do PIX
   const generatePixCode = () => {
     const randomCode = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     setPixCode(randomCode.toUpperCase());
   };
 
+  // Atualiza o estado do formulário conforme o usuário digita
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -40,25 +46,24 @@ const CheckoutPage = () => {
     });
   };
 
+  // Valida os campos obrigatórios do formulário
   const validateForm = () => {
     const newErrors = {};
-    
     if (!formData.cep) newErrors.cep = 'CEP é obrigatório';
     if (!formData.endereco) newErrors.endereco = 'Endereço é obrigatório';
     if (!formData.cidade) newErrors.cidade = 'Cidade é obrigatória';
     if (!formData.estado) newErrors.estado = 'Estado é obrigatório';
-    
     if (paymentMethod === 'creditCard') {
       if (!formData.cardNumber) newErrors.cardNumber = 'Número do cartão é obrigatório';
       if (!formData.cardName) newErrors.cardName = 'Nome no cartão é obrigatório';
       if (!formData.cardExpiry) newErrors.cardExpiry = 'Validade é obrigatória';
       if (!formData.cardCvv) newErrors.cardCvv = 'CVV é obrigatório';
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  // Envia os dados para finalizar a compra
   const finalizarCompra = () => {
     fetch('http://localhost:3000/finalizarCompra', {
       method: 'POST',
@@ -80,21 +85,22 @@ const CheckoutPage = () => {
       .catch(error => alert(`Erro ao finalizar a compra: ${error.message}`));
   };
 
+  // Handler do submit do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      finalizarCompra(); // Chamar a função finalizarCompra
+      finalizarCompra();
     }
   };
 
   return (
     <div className={styles.checkoutContainer}>
       <h1 className={styles.checkoutTitle}>Finalizar Compra</h1>
-      
+      {/* Formulário de entrega e pagamento */}
       <form onSubmit={handleSubmit} className={styles.checkoutForm}>
         <div className={styles.checkoutSection}>
           <h2 className={styles.checkoutSectionTitle}>Endereço de Entrega</h2>
-          
+          {/* Campos de endereço */}
           <div className={styles.checkoutFormGroup}>
             <label>CEP*</label>
             <input
@@ -107,7 +113,6 @@ const CheckoutPage = () => {
             />
             {errors.cep && <span className={styles.checkoutErrorMessage}>{errors.cep}</span>}
           </div>
-          
           <div className={styles.checkoutFormGroup}>
             <label>Endereço*</label>
             <input
@@ -120,7 +125,6 @@ const CheckoutPage = () => {
             />
             {errors.endereco && <span className={styles.checkoutErrorMessage}>{errors.endereco}</span>}
           </div>
-          
           <div className={styles.checkoutFormRow}>
             <div className={styles.checkoutFormGroup}>
               <label>Cidade*</label>
@@ -134,7 +138,6 @@ const CheckoutPage = () => {
               />
               {errors.cidade && <span className={styles.checkoutErrorMessage}>{errors.cidade}</span>}
             </div>
-            
             <div className={styles.checkoutFormGroup}>
               <label>Estado*</label>
               <input
@@ -148,7 +151,6 @@ const CheckoutPage = () => {
               {errors.estado && <span className={styles.checkoutErrorMessage}>{errors.estado}</span>}
             </div>
           </div>
-          
           <div className={styles.checkoutFormGroup}>
             <label>Observações de entrega (opcional)</label>
             <textarea
@@ -160,10 +162,9 @@ const CheckoutPage = () => {
             />
           </div>
         </div>
-        
         <div className={styles.checkoutSection}>
           <h2 className={styles.checkoutSectionTitle}>Método de Pagamento</h2>
-          
+          {/* Opções de pagamento */}
           <div className={styles.checkoutPaymentMethods}>
             <div 
               className={`${styles.checkoutPaymentOption} ${paymentMethod === 'pix' ? styles.checkoutActive : ''}`}
@@ -178,7 +179,6 @@ const CheckoutPage = () => {
               <span>PIX</span>
               <img src="/assets/pix-logo.png" alt="PIX" className={styles.paymentLogo} />
             </div>
-            
             <div 
               className={`${styles.checkoutPaymentOption} ${paymentMethod === 'creditCard' ? styles.checkoutActive : ''}`}
               onClick={() => setPaymentMethod('creditCard')}
@@ -196,7 +196,7 @@ const CheckoutPage = () => {
               </div>
             </div>
           </div>
-          
+          {/* Renderiza campos de acordo com o método de pagamento */}
           {paymentMethod === 'pix' && (
             <div className={styles.checkoutPixContainer}>
               <div className={styles.checkoutPixCodeContainer}>
@@ -213,7 +213,6 @@ const CheckoutPage = () => {
                   Copiar Código
                 </button>
               </div>
-              
               <div className={styles.checkoutQrCodeContainer}>
                 <h3>QR Code</h3>
                 <div className={styles.checkoutQrCodePlaceholder}>
@@ -225,7 +224,6 @@ const CheckoutPage = () => {
               </div>
             </div>
           )}
-          
           {paymentMethod === 'creditCard' && (
             <div className={styles.checkoutCreditCardForm}>
               <div className={styles.checkoutFormGroup}>
@@ -240,7 +238,6 @@ const CheckoutPage = () => {
                 />
                 {errors.cardNumber && <span className={styles.checkoutErrorMessage}>{errors.cardNumber}</span>}
               </div>
-              
               <div className={styles.checkoutFormGroup}>
                 <label>Nome no Cartão*</label>
                 <input
@@ -253,7 +250,6 @@ const CheckoutPage = () => {
                 />
                 {errors.cardName && <span className={styles.checkoutErrorMessage}>{errors.cardName}</span>}
               </div>
-              
               <div className={styles.checkoutFormRow}>
                 <div className={styles.checkoutFormGroup}>
                   <label>Validade*</label>
@@ -267,7 +263,6 @@ const CheckoutPage = () => {
                   />
                   {errors.cardExpiry && <span className={styles.checkoutErrorMessage}>{errors.cardExpiry}</span>}
                 </div>
-                
                 <div className={styles.checkoutFormGroup}>
                   <label>CVV*</label>
                   <input
@@ -284,7 +279,7 @@ const CheckoutPage = () => {
             </div>
           )}
         </div>
-        
+        {/* Botões de ação */}
         <div className={styles.checkoutActions}>
           <Link to="/carrinho" className={styles.checkoutBackLink}>
             ← Voltar para o carrinho

@@ -5,12 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 function Login() {
+  // Estados para campos do formulário e mensagens
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login, isAuthenticated, loading } = useAuth();
 
+  // Se já estiver logado, exibe mensagem e redireciona
   useEffect(() => {
     if (!loading && isAuthenticated) {
       setError('Você já está logado');
@@ -21,19 +23,21 @@ function Login() {
     }
   }, [isAuthenticated, loading, navigate, error]);
 
+  // Função para lidar com o envio do formulário de login
   const handleLogin = async (e) => {
     e.preventDefault();
     
     try {
+      // Envia os dados para a API de login
       const response = await axios.post('http://localhost:3000/login', 
-        { username, password }, // Corrigir o formato do corpo da requisição
+        { username, password }, // Corpo da requisição
         {
           headers: { 'Content-Type': 'application/json' }
         }
       );
       if (response.status === 200) {
         const { userId, admin } = response.data;
-        login(userId, admin); // Atualizar o estado de autenticação com userId e admin
+        login(userId, admin); // Atualiza o estado de autenticação com userId e admin
         navigate('/');
       }
     } catch (error) {
@@ -52,10 +56,12 @@ function Login() {
       <section>
         <div className="content-login">
           <h2>Login</h2>
+          {/* Exibe mensagem de erro se houver */}
           {error && <p className="error-message">{error}</p>}
           {loading ? (
             <p>Carregando...</p>
           ) : (
+            // Formulário de login
             <form className="login-form" onSubmit={handleLogin}>
               <label htmlFor="username">Usuário:</label>
               <input

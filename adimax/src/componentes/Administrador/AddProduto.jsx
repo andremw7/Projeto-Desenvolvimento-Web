@@ -4,6 +4,7 @@ import './AddProduto.css';
 import './adminNavigation.css';
 
 function AddProduto() {
+  // Estado para armazenar os dados do novo produto
   const [product, setProduct] = useState({
     nome: '',
     preco: '',
@@ -15,9 +16,11 @@ function AddProduto() {
     estoque: '',
   });
 
+  // Estado para controlar o envio do formulário e mensagens de sucesso
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
+  // Atualiza o estado do produto conforme o usuário digita nos campos do formulário
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct((prev) => ({
@@ -26,10 +29,12 @@ function AddProduto() {
     }));
   };
 
+  // Envia o formulário para a API para adicionar um novo produto
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Faz uma requisição POST para a rota de adicionar produto
     fetch('http://localhost:3000/admin/add-produto', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -38,6 +43,7 @@ function AddProduto() {
       .then((response) => {
         if (response.ok) {
           setSuccessMessage('Produto adicionado com sucesso!');
+          // Limpa o formulário após sucesso
           setProduct({
             nome: '',
             preco: '',
@@ -60,6 +66,7 @@ function AddProduto() {
 
   return (
     <>
+      {/* Navegação do admin */}
       <div className="admin-navigation">
         <button onClick={() => window.location.href = '/admin/produtos'}>Meus Produtos</button>
         <button onClick={() => window.location.href = '/admin/vendas'}>Vendas/Pedidos</button>
@@ -68,7 +75,9 @@ function AddProduto() {
         <button onClick={() => window.location.href = '/register'}>Registrar Admin</button>
       </div>
       <div className="add-product-page-container">
+        {/* Formulário para adicionar produto */}
         <form onSubmit={handleSubmit} className="add-product-form">
+          {/* Campos do formulário */}
           <div className="add-product-form-group">
             <label htmlFor="nome">Nome do Produto</label>
             <input
@@ -172,10 +181,12 @@ function AddProduto() {
             />
           </div>
 
+          {/* Botão de envio */}
           <button type="submit" className="add-product-submit-btn" disabled={isSubmitting}>
             {isSubmitting ? 'Adicionando...' : 'Adicionar Produto'}
           </button>
 
+          {/* Mensagem de sucesso */}
           {successMessage && <p className="add-product-success-message">{successMessage}</p>}
         </form>
       </div>
