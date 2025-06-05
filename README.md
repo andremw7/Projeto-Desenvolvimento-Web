@@ -1,4 +1,3 @@
-![Capa do projeto](mockup.png)
 
 
 # 🐾 Projeto: ADIMAX PET SHOP
