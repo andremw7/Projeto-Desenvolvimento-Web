@@ -237,3 +237,6 @@ O projeto **ADIMAX PET SHOP** entrega uma experiência completa de e-commerce, c
 ---
 
 🧡 **ADIMAX PET SHOP — Cuidando do seu pet como família!**
+![Mockup do Projeto](mockup.png)
+
+
