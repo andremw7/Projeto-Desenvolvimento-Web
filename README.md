@@ -94,7 +94,7 @@ graph TD
   Admin <--> AdminRegistro
   Login<--> Carrinho <--> Checkout <--> Status
 
-
+```
 ---
 
 ## ⚙️ 4. Tecnologias e Arquitetura
