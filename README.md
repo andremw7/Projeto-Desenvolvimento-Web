@@ -65,57 +65,34 @@ O **ADIMAX PET SHOP** é uma aplicação web completa de e-commerce para pet sho
 
 ## 🗺️ 3. Diagrama de Navegação
 
-```mermaid
 graph TD
-  Home[Início]
-  Produtos[Produtos]
-  Produto[Detalhe do Produto]
-  Login[Login]
-  Register[Registrar]
-  CarrinhoUsuario[Carrinho]
-  Checkout[Finalizar Pedido]
-  Status[Status da Compra]
-  Perfil[Perfil Usuário]
-  Pedidos[Meus Pedidos]
-  AdminPerfil[Perfil Admin]
-  AdminProdutos[Admin Produtos]
-  AdminPedidos[Admin Pedidos]
-  AdminAddProdutos[Admin Adicionar produtos]
-  AdminRegister[Registrar Admin]
+  Home[🏠 Início]
+  Produtos[🛍 Produtos]
+  Produto[📦 Produto]
+  Login[🔐 Login]
+  Register[📝 Registrar]
+  Carrinho[🛒 Carrinho]
+  Checkout[💳 Checkout]
+  Status[📦 Status Pedido]
+  Perfil[👤 Perfil]
+  Pedidos[📄 Meus Pedidos]
 
-  %% Conexões bidirecionais (vai e volta)
-  Home <--> Produtos<--> Perfil
-  Produtos <--> Produto<--> Perfil
-  Home <--> Login<--> Produtos
-  Login <--> Register <-->Home
-  Usuario <--> Perfil<-->Register
-  Home <-->Perfil <--> Pedidos <--> Home
-  Produto <--> Home
-  Pedidos<-->CarrinhoUsuario
-  Perfil<-->Status<-->CarrinhoUsuario
+  Admin[🛠 Admin Perfil]
+  AdminProdutos[📦 Admin Produtos]
+  AdminPedidos[📄 Vendas/Pedidos]
+  AdminNovo[➕ Novo Produto]
+  AdminRegistro[➕📝 Adicionar Administrador]
 
-  %% Conexões unidirecionais (apenas uma direção)
-  Home <-->Login <--> Usuario
-  Home <-->Login 
-  Home <-->Usuario <--> CarrinhoUsuario<--> Produtos
-  Home <-->CarrinhoUsuario <--> Checkout<--> Produtos
-  Home <-->Checkout <--> Status<-->Home
-  Home <-->AdminPerfil<--> Home
-  Home <-->AdminPerfil <--> AdminProdutos<--> AdminPedidos
-  Home <-->AdminPedidos <--> AdminPerfil
-  Produto <--> CarrinhoUsuario
-  Login <-->AdminProdutos<--> Home
-  AdminProdutos<-->AdminAddProdutos <--> Home
-  AdminPerfil <-->AdminAddProdutos <-->AdminPedidos
-  AdminPerfil<-->AdminRegister <--> Home
-  AdminProdutos<-->AdminRegister <-->AdminPedidos
-  AdminRegister <-->AdminAddProdutos
+  %% Fluxo principal do usuário
+  Home <--> Produtos <--> Produto 
+  Home <--> Login <--> Register
+  Login <--> Perfil <--> Pedidos
 
-
-  
-
-  
-```
+  %% Admin
+  Home <--> Admin <--> AdminProdutos <--> AdminNovo
+  Admin <--> AdminPedidos
+  Admin <--> AdminRegistro
+  Login<--> Carrinho <--> Checkout <--> Status
 
 ---
 
