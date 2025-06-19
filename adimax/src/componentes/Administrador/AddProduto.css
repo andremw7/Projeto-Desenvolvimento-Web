@@ -1,0 +1,60 @@
+.add-product-page-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-header-section h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.add-product-form-group {
+  margin-bottom: 15px;
+  padding: 0 10px; /* Adicionado padding interno para evitar que os inputs cheguem na borda */
+}
+
+.add-product-form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.add-product-form-group input,
+.add-product-form-group textarea {
+  width: 90%; /* Reduzido de 100% para 90% */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.add-product-submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #ff8c00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-product-submit-btn:hover {
+  background-color: #e67e00;
+}
+
+.add-product-success-message {
+  text-align: center;
+  color: #28a745;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}

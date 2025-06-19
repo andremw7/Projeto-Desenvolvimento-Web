@@ -1,0 +1,258 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #212529;
+    color: #fff;
+    padding: 64px 32px; /* Converted 4rem and 2rem to px */
+    text-align: center;
+}
+
+.hero-container-compact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px; /* Reduz o espaçamento entre os elementos internos */
+  padding: 20px; /* Ajusta o padding para reduzir o afastamento */
+}
+
+.hero-content-compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Reduz o espaçamento entre o texto e a imagem */
+  padding: 20px; /* Ajusta o padding para reduzir o afastamento */
+}
+
+.text-content {
+  flex: 1;
+  text-align: center; /* Centraliza o texto, título e links */
+}
+
+.text-content h1 {
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  margin-bottom: 20px;
+}
+
+.text-content a {
+  display: inline-block;
+  margin: 10px;
+}
+
+.image-content {
+  flex: 1;
+  text-align: center; /* Centraliza a imagem */
+}
+
+.image-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.hero .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero .row {
+    margin: 0; /* Remove all margins around the row */
+    padding: 0; /* Remove any padding */
+    height: auto; /* Adjust height to fit content */
+    margin-bottom: 2rem; /* Increase spacing below the row */
+}
+
+.hero .col-lg-6 {
+    flex: 1;
+    max-width: 50%; /* Ensure columns take up half the width */
+    padding: 10px; /* Adiciona espaçamento interno */
+    box-sizing: border-box; /* Inclui padding e border no tamanho total */
+    text-align: center; /* Centraliza o conteúdo */
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites */
+    margin: 0; /* Remove all margins around the column */
+}
+
+.hero h1 {
+    font-size: 40px; /* Converted 2.5rem to 40px */
+    font-weight: bold;
+    margin-bottom: 16px; /* Converted 1rem to 16px */
+}
+
+.hero p {
+    font-size: 19.2px; /* Converted 1.2rem to 19.2px */
+    margin-bottom: 32px; /* Converted 2rem to 32px */
+}
+
+.hero .btn {
+    padding: 12px 24px; /* Converted 0.75rem and 1.5rem to px */
+    font-size: 16px; /* Converted 1rem to 16px */
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 8px; /* Converted 0.5rem to 8px */
+    transition: background-color 0.3s ease;
+}
+
+.hero .btn-primary {
+    background-color: #ff8c00; /* Nova cor laranja */
+    color: #fff;
+}
+
+.hero .btn-primary:hover {
+    background-color: #cc7000; /* Tom mais escuro para hover */
+}
+
+.hero .btn-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.hero .btn-secondary:hover {
+    background-color: #fff;
+    color: #212529;
+}
+
+.hero .col-lg-6 img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o tamanho do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaços extras ao redor da imagem */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+    margin-right: 3rem; /* Add more spacing between the image and the right edge */
+}
+
+/* Features Section */
+.features {
+    padding: 64px 32px; /* Converted 4rem and 2rem to px */
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 32px; /* Converted 2rem to 32px */
+    font-weight: bold;
+    margin-bottom: 32px; /* Converted 2rem to 32px */
+}
+
+.features .feature {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.features .feature-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 32px; /* Converted 2rem to 32px */
+    text-align: center;
+    width: 300px;
+}
+
+.features .feature-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+}
+
+.features .feature-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.features .feature-item p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* Brands Section */
+.brands {
+    background-color: #f8f9fa;
+    padding: 64px 32px;
+}
+
+.brands h2 {
+    font-size: 32px;
+    margin-bottom: 32px;
+    color: #212529;
+}
+
+.brands .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.brands .col-md-4 {
+    flex: 1 1 calc(33.333% - 2rem); /* Responsividade para 3 colunas */
+    max-width: calc(33.333% - 2rem);
+    text-align: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.brands img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brands img:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.brands h5 {
+    margin-top: 16px;
+    font-size: 20px;
+    color: black;
+}
+
+.brands p {
+    font-size: 16px;
+    color: #6c757d;
+    margin-top: 8px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .brands .col-md-4 {
+        flex: 1 1 100%; /* Cada item ocupa 100% da largura */
+        max-width: 100%;
+    }
+
+    .brands .row {
+        gap: 1rem; /* Reduz o espaçamento entre os itens */
+    }
+
+    .hero .container {
+        flex-direction: column; /* Alinha os itens verticalmente */
+    }
+
+    .hero .col-lg-6 {
+        max-width: 100%; /* Ocupa 100% da largura */
+        margin-bottom: 1rem; /* Espaçamento entre os elementos */
+    }
+
+    .hero .col-lg-6 img {
+        margin-right: 0; /* Remove o espaçamento à direita */
+    }
+}
+

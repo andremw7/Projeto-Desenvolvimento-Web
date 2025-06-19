@@ -1,0 +1,57 @@
+.status-compra-container {
+  max-width: 800px;
+  margin: 50px auto 0; /* Adiciona margem superior para afastar o div da parte de cima */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.infoPedido {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.infoPedido p {
+  margin: 5px 0;
+}
+
+.itens {
+  margin-bottom: 20px;
+}
+
+.itens h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.item span {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.total {
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
