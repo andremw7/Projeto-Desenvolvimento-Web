@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
-require('dotenv').config(); // ← Carrega variáveis do .env
 
 // Importar as rotas separadas
 const produtosRoutes = require('./routes/produtos');
@@ -24,8 +23,11 @@ app.use(usuariosRoutes);
 // Servir arquivos estáticos
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
+// String de conexão com o MongoDB
+const uri = 'mongodb+srv://renatospessotto:Q7MXczItG8ILl4HJ@clusterdesenvolvimentow.jc6sory.mongodb.net/meu_banco_web?retryWrites=true&w=majority&appName=ClusterDesenvolvimentoWeb';
+
 // Conectar ao MongoDB Atlas
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('✅ Conectado ao MongoDB Atlas com sucesso');
 

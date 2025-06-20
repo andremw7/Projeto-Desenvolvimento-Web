@@ -3,6 +3,7 @@ const { MongoClient } = require('mongodb');
 // URL do cluster MongoDB
 const uri = 'mongodb+srv://renatospessotto:Q7MXczItG8ILl4HJ@clusterdesenvolvimentow.jc6sory.mongodb.net/?retryWrites=true&w=majority&appName=ClusterDesenvolvimentoWeb';
 
+
 const client = new MongoClient(uri);
 
 async function connectMongo() {
