@@ -128,5 +128,25 @@
     "createdAt": "2025-06-04T17:07:32.063Z",
     "lastLogin": null,
     "excluido": false
+  },
+  {
+    "id": 14,
+    "username": "renato2",
+    "email": "renato2@gmail.com",
+    "password": "renato2205",
+    "admin": false,
+    "createdAt": "2025-06-11T12:45:47.920Z",
+    "lastLogin": null,
+    "excluido": false
+  },
+  {
+    "id": 15,
+    "username": "renato_teste",
+    "email": "renato_teste@gmail.com",
+    "password": "renato2205",
+    "admin": false,
+    "createdAt": "2025-06-11T12:57:07.899Z",
+    "lastLogin": null,
+    "excluido": false
   }
 ]

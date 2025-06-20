@@ -11,6 +11,20 @@
     "imagem": "/magnus_control_tartaro.png",
     "estoque": 107,
     "userId": 11,
-    "quantity": 5
+    "quantity": 1
+  },
+  {
+    "id": 1,
+    "nome": "Ração Magnus Filhotes",
+    "preco": 89.9,
+    "faixaEtaria": "filhotes",
+    "descricao": "Ração premium para cães filhotes, com leite e frango.",
+    "tipo": "ração",
+    "marca": "Magnus",
+    "excluido": false,
+    "imagem": "/magnus_filhote.png",
+    "estoque": 11,
+    "userId": 15,
+    "quantity": 11
   }
 ]

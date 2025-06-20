@@ -33,7 +33,7 @@
     "marca": "Magnus",
     "excluido": false,
     "imagem": "/magnus_control_tartaro.png",
-    "estoque": 107
+    "estoque": 101
   },
   {
     "id": 4,
@@ -202,17 +202,5 @@
     "excluido": true,
     "imagem": "dsasd.png",
     "estoque": 123
-  },
-  {
-    "id": 18,
-    "nome": "ração organica",
-    "preco": 20,
-    "faixaEtaria": "adultos",
-    "descricao": "ração orgãnica pra adultos",
-    "tipo": "ração",
-    "marca": "magnus",
-    "excluido": false,
-    "imagem": "racao.png",
-    "estoque": 10
   }
 ]
