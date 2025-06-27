@@ -1,0 +1,272 @@
+.content-produtos {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center; /* Centraliza o h2 dentro de .content */
+}
+
+@media (max-width: 1024px) {
+  .content-produtos {
+    padding: 15px; /* Reduz o padding em telas menores */
+  }
+}
+
+@media (max-width: 768px) {
+  .content-produtos {
+    padding: 10px; /* Reduz ainda mais o padding em telas muito pequenas */
+  }
+}
+
+.product-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    flex-direction: column; /* Ajusta para layout em coluna em telas menores */
+    gap: 20px; /* Reduz o espaçamento entre os itens */
+  }
+}
+
+.product-grid figure {
+  flex: 1;
+  text-align: center;
+}
+.product-grid img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 8px;
+}
+.product-grid-two-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Agora suporta 3 colunas */
+  gap: 10px; /* Espaçamento entre os itens */
+  margin-top: 100px;
+  justify-items: center; /* Centraliza os cards dentro das colunas */
+}
+
+@media (max-width: 1024px) {
+  .product-grid-two-columns {
+    grid-template-columns: repeat(2, 1fr); /* Ajusta para 2 colunas em telas menores */
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid-two-columns {
+    grid-template-columns: 1fr; /* Ajusta para 1 coluna em telas muito pequenas */
+  }
+}
+
+.two-column-products h2 {
+  text-align: center;
+  margin-left: 40px;
+}
+
+/* Estilo para a área de filtros */
+.filter-containerr{
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espaçamento entre os filtros */
+  margin: 20px 0;
+}
+
+.filter-buttons {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-buttons button {
+  background-color: #FFA500;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-buttons button:hover {
+  background-color: #e69500;
+  transform: translateY(-2px);
+}
+
+.filter-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.filter-dropdown button {
+  background-color: transparent;
+  color: #333;
+  padding: 12px 20px;
+  text-align: left;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.filter-dropdown button:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilo para o botão selecionado */
+.filter-dropdown button.selected {
+  background-color: #FFA500;
+  color: white;
+  font-weight: bold;
+}
+
+.filter-buttons:hover .filter-dropdown {
+  display: block;
+}
+
+.product-card {
+  width: 350px;              /* Tamanho fixo */
+  height: 400px;             /* Altura fixa */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;        /* Centraliza texto e botões */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Distribui imagem, texto e botão */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+  max-width: auto;
+  height: 200px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.product-card h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.product-card button {
+  padding: 10px 20px;
+  background-color: #FFA500;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+  background-color: #e69500;
+}
+
+/* Estilo para o modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.modal button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.modal button:first-child {
+  background-color: #FFA500;
+  color: white;
+}
+
+.modal button:first-child:hover {
+  background-color: #e69500;
+}
+
+.modal button:last-child {
+  background-color: #ddd;
+  color: #333;
+}
+
+.modal button:last-child:hover {
+  background-color: #ccc;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-input {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+  border-color: #ff8c00;
+  outline: none;
+}

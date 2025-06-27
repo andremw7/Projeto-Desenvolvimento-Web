@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "username": "user1",
+    "password": "password1",
+    "admin": false,
+    "email": "user1@example.com",
+    "createdAt": "2023-01-01T12:00:00Z",
+    "lastLogin": "2023-03-01T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 2,
+    "username": "user2",
+    "password": "password2",
+    "admin": true,
+    "email": "user2@example.com",
+    "createdAt": "2023-01-02T12:00:00Z",
+    "lastLogin": "2023-03-02T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 3,
+    "username": "user3",
+    "password": "password3",
+    "admin": false,
+    "email": "user3@example.com",
+    "createdAt": "2023-01-03T12:00:00Z",
+    "lastLogin": "2023-03-03T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 4,
+    "username": "user4",
+    "password": "password4",
+    "admin": false,
+    "email": "user4@example.com",
+    "createdAt": "2023-01-04T12:00:00Z",
+    "lastLogin": "2023-03-04T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 5,
+    "username": "user5",
+    "password": "password5",
+    "admin": false,
+    "email": "user5@example.com",
+    "createdAt": "2023-01-05T12:00:00Z",
+    "lastLogin": "2023-03-05T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 6,
+    "username": "user6",
+    "password": "password6",
+    "admin": false,
+    "email": "user6@example.com",
+    "createdAt": "2023-01-06T12:00:00Z",
+    "lastLogin": "2023-03-06T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 7,
+    "username": "user7",
+    "password": "password7",
+    "admin": false,
+    "email": "user7@example.com",
+    "createdAt": "2023-01-07T12:00:00Z",
+    "lastLogin": "2023-03-07T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 8,
+    "username": "user8",
+    "password": "password8",
+    "admin": false,
+    "email": "user8@example.com",
+    "createdAt": "2023-01-08T12:00:00Z",
+    "lastLogin": "2023-03-08T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 9,
+    "username": "user9",
+    "password": "password9",
+    "admin": false,
+    "email": "user9@example.com",
+    "createdAt": "2023-01-09T12:00:00Z",
+    "lastLogin": "2023-03-09T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 10,
+    "username": "user10",
+    "password": "password10",
+    "admin": true,
+    "email": "user10@example.com",
+    "createdAt": "2023-01-10T12:00:00Z",
+    "lastLogin": "2023-03-10T15:30:00Z",
+    "excluido": false
+  },
+  {
+    "id": 11,
+    "username": "renato",
+    "email": "renato@gmail.com",
+    "password": "renato2205",
+    "admin": false,
+    "createdAt": "2025-05-30T00:11:11.796Z",
+    "lastLogin": null,
+    "excluido": false
+  },
+  {
+    "id": 12,
+    "username": "renatoadmin",
+    "email": "renatoadmin@gmail.commm",
+    "password": "renato2205",
+    "admin": true,
+    "createdAt": "2025-05-30T13:57:50.899Z",
+    "lastLogin": null,
+    "excluido": false
+  },
+  {
+    "id": 13,
+    "username": "admin2",
+    "email": "rspessotto@uol.com.br",
+    "password": "renato2205",
+    "admin": true,
+    "createdAt": "2025-06-04T17:07:32.063Z",
+    "lastLogin": null,
+    "excluido": false
+  },
+  {
+    "id": 14,
+    "username": "renato2",
+    "email": "renato2@gmail.com",
+    "password": "renato2205",
+    "admin": false,
+    "createdAt": "2025-06-11T12:45:47.920Z",
+    "lastLogin": null,
+    "excluido": false
+  },
+  {
+    "id": 15,
+    "username": "renato_teste",
+    "email": "renato_teste@gmail.com",
+    "password": "renato2205",
+    "admin": false,
+    "createdAt": "2025-06-11T12:57:07.899Z",
+    "lastLogin": null,
+    "excluido": false
+  }
+]

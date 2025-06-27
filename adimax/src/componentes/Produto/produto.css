@@ -1,0 +1,213 @@
+.produto-detalhes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.produto-detalhes .imagem-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.produto-detalhes .imagem-container .main-image {
+  aspect-ratio: 1;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.produto-detalhes .imagem-container .main-image img {
+  width: 90%; /* Aumenta o tamanho da imagem em 50% */
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.produto-detalhes .imagem-container .main-image img:hover {
+  transform: scale(1.05);
+}
+
+.produto-detalhes .imagem-container .thumbnail-images {
+  display: flex;
+  gap: 10px;
+}
+
+.produto-detalhes .imagem-container .thumbnail-images button {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.produto-detalhes .imagem-container .thumbnail-images button.selected {
+  border-color: #ff8c00;
+}
+
+.produto-detalhes .imagem-container .thumbnail-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.produto-detalhes .texto-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.produto-detalhes .texto-container h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.produto-detalhes .texto-container .price-section {
+  background-color: #fff9f0;
+  border: 1px solid #ff8c00;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.produto-detalhes .texto-container .price-section .price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff8c00;
+}
+
+.produto-detalhes .texto-container .price-section .discount {
+  font-size: 1rem;
+  color: #666;
+  text-decoration: line-through;
+}
+
+.produto-detalhes .texto-container .description {
+  font-size: 1rem;
+  color: #555;
+}
+
+.produto-detalhes .texto-container .details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.produto-detalhes .texto-container .details span {
+  font-size: 1rem;
+  color: #333;
+}
+
+.produto-detalhes .texto-container .details span strong {
+  color: #ff8c00;
+}
+
+.produto-detalhes .texto-container .actions {
+  display: flex;
+  gap: 20px;
+}
+
+.produto-detalhes .texto-container .actions .quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.produto-detalhes .texto-container .actions .quantity-control button {
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.produto-detalhes .texto-container .actions .quantity-control span {
+  padding: 10px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.produto-detalhes .texto-container .actions .buy-button {
+  flex: 1;
+  background-color: #ff8c00;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.produto-detalhes .texto-container .actions .buy-button:hover {
+  background-color: #e67e00;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.modal button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.modal button:first-child {
+  background-color: #ffa500;
+  color: white;
+}
+
+.modal button:first-child:hover {
+  background-color: #e69500;
+}
+
+.modal button:last-child {
+  background-color: #ddd;
+  color: #333;
+}
+
+.modal button:last-child:hover {
+  background-color: #ccc;
+}

@@ -1,0 +1,26 @@
+.admin-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Espaçamento entre os botões */
+  margin: 20px 0; /* Margem vertical para separar do conteúdo */
+}
+
+.admin-navigation button {
+  background-color: #FF8C00; /* Laranja padrão */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-navigation button:hover {
+  background-color: #E67E00; /* Laranja mais escuro ao passar o mouse */
+}
+
+.admin-navigation button:active {
+  background-color: #CC6F00; /* Laranja ainda mais escuro ao clicar */
+}
