@@ -327,7 +327,6 @@ A barra de **busca inteligente no header** permite que o usuário visualize suge
 
 ## 📊 9. Melhorias Futuras
 
-- Armazenamento em nuvem para imagens
 - Integração com banco remoto (ex: MongoDB Atlas)
 
 ---
